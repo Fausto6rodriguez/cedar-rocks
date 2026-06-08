@@ -9,54 +9,64 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#F7F6F3;--surf:#FFFFFF;--surf2:#F2F1EE;--surf3:#E8E7E3;
-  --bdr:#E0DED8;--bdr2:#C8C6BF;
-  --tx:#1A1916;--tx2:#6B6860;--tx3:#A8A69E;
-  --blue:#185FA5;--blue-bg:#EBF3FC;--blue-tx:#0C447C;
-  --green:#3B6D11;--green-bg:#EAF3DE;
-  --amber:#854F0B;--amber-bg:#FAEEDA;
-  --red:#A32D2D;--red-bg:#FCEBEB;
-  --purple:#534AB7;--purple-bg:#EEEDFE;--purple-tx:#3C3489;
-  --teal:#0F6E56;--teal-bg:#E1F5EE;--teal-tx:#085041;
+  --bg:#E8E5DE;--surf:#FFFFFF;--surf2:#F2F0EC;--surf3:#E4E1DA;
+  --bdr:#D0CCC4;--bdr2:#A8A49C;
+  --tx:#141210;--tx2:#4A4840;--tx3:#888480;
+  --blue:#1558A0;--blue-bg:#DDEAF8;--blue-tx:#0C3D75;
+  --green:#2D5E0A;--green-bg:#D6EDBC;
+  --amber:#7A4508;--amber-bg:#F8E2BA;
+  --red:#992020;--red-bg:#F8DADA;--red-tx:#992020;
+  --purple:#4A42AA;--purple-bg:#E4E2FC;--purple-tx:#332E88;
+  --teal:#0A6050;--teal-bg:#C8EDE2;--teal-tx:#064840;
+  --sb-bg:#1C1F26;--sb-tx:#C8CAD0;--sb-tx2:#8A8D96;--sb-active-bg:#2A3040;--sb-active-tx:#7BAEE8;--sb-border:#2E323C;
   --r:8px;--rlg:12px;
   --font:'DM Sans',system-ui,sans-serif;--mono:'DM Mono',monospace;
 }
 html,body{height:100%;background:var(--bg);color:var(--tx);font-family:var(--font);font-size:14px;line-height:1.5}
 .app{display:flex;height:100vh;overflow:hidden}
-.sidebar{width:224px;flex-shrink:0;background:var(--surf);border-right:1px solid var(--bdr);display:flex;flex-direction:column;overflow:hidden}
-.sb-top{padding:16px 14px 12px;border-bottom:1px solid var(--bdr);flex-shrink:0}
-.sb-logo-text{font-size:15px;font-weight:500;color:#1B2A4A;letter-spacing:.01em;margin-bottom:6px;}
-.sb-q{font-size:11px;color:var(--tx2)}
+.sidebar{width:224px;flex-shrink:0;background:var(--sb-bg);border-right:none;display:flex;flex-direction:column;overflow:hidden}
+.sb-top{padding:16px 14px 12px;border-bottom:1px solid var(--sb-border);flex-shrink:0}
+.sb-logo-text{font-size:15px;font-weight:500;color:#FFFFFF;letter-spacing:.01em;margin-bottom:4px;}
+.sb-q{font-size:11px;color:var(--sb-tx2)}
 .sb-nav{flex:1;overflow-y:auto;padding:8px 0}
-.nav-sec{font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--tx3);padding:10px 14px 3px}
-.nav-item{display:flex;align-items:center;gap:8px;padding:7px 14px;cursor:pointer;color:var(--tx2);font-size:13px;user-select:none}
-.nav-item:hover{background:var(--surf2);color:var(--tx)}
-.nav-item.active{background:var(--blue-bg);color:var(--blue);font-weight:500}
-.nav-item svg{flex-shrink:0}
-.sb-foot{padding:10px 12px;border-top:1px solid var(--bdr);flex-shrink:0}
-.btn-set{display:flex;align-items:center;gap:7px;width:100%;padding:7px 10px;background:transparent;border:1px solid var(--bdr);border-radius:var(--r);cursor:pointer;color:var(--tx2);font-size:12px;font-family:var(--font)}
-.btn-set:hover{background:var(--surf2);color:var(--tx)}
+.nav-sec{font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--sb-tx2);padding:14px 14px 4px;opacity:.7}
+.nav-item{display:flex;align-items:center;gap:8px;padding:7px 14px;cursor:pointer;color:var(--sb-tx);font-size:13px;user-select:none;border-radius:0}
+.nav-item:hover{background:var(--sb-active-bg);color:#fff}
+.nav-item.active{background:var(--sb-active-bg);color:var(--sb-active-tx);font-weight:500;border-left:3px solid var(--sb-active-tx);padding-left:11px}
+.nav-item svg{flex-shrink:0;opacity:.75}
+.nav-item.active svg{opacity:1}
+.sb-foot{padding:10px 12px;border-top:1px solid var(--sb-border);flex-shrink:0}
+.btn-set{display:flex;align-items:center;gap:7px;width:100%;padding:7px 10px;background:transparent;border:1px solid var(--sb-border);border-radius:var(--r);cursor:pointer;color:var(--sb-tx);font-size:12px;font-family:var(--font)}
+.btn-set:hover{background:var(--sb-active-bg);color:#fff}
 .main{flex:1;overflow:hidden;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start}
-.topbar{padding:14px 24px;border-bottom:1px solid var(--bdr);background:var(--surf);flex-shrink:0;display:flex;align-items:center;justify-content:space-between}
-.pg-title{font-size:15px;font-weight:500}
-.pg-sub{font-size:12px;color:var(--tx2);margin-top:1px}
+.topbar{padding:14px 24px;border-bottom:1px solid var(--bdr);background:var(--surf);flex-shrink:0;display:flex;align-items:center;justify-content:space-between;box-shadow:0 1px 3px rgba(0,0,0,0.08)}
+.pg-title{font-size:15px;font-weight:600;color:var(--tx)}
+.pg-sub{font-size:12px;color:var(--tx3);margin-top:1px}
 .content{flex:1;overflow-y:auto;padding:22px 24px;min-height:0}
 .panel{display:none}.panel.active{display:block;width:100%}
 .btn{display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border-radius:var(--r);font-family:var(--font);font-size:12px;font-weight:500;cursor:pointer;border:1px solid transparent}
 .btn-ghost{background:var(--surf);border-color:var(--bdr2);color:var(--tx2)}.btn-ghost:hover{background:var(--surf2);color:var(--tx)}
 .btn-primary{background:var(--blue);color:#fff}.btn-primary:hover{opacity:.9}
 .btn-del{background:transparent;border:none;color:var(--tx3);padding:3px 4px;cursor:pointer;display:inline-flex;align-items:center;border-radius:4px;font-size:13px}.btn-del:hover{color:var(--red);background:var(--red-bg)}
-.stat-row{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:20px}
-.stat-card{background:var(--surf);border:1px solid var(--bdr);border-radius:var(--r);padding:12px 14px}
-.stat-lbl{font-size:10px;color:var(--tx3);margin-bottom:5px;text-transform:uppercase;letter-spacing:.05em}
-.stat-val{font-size:22px;font-weight:300}
+.stat-row{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin-bottom:16px}
+.stat-card{background:var(--surf);border:1px solid var(--bdr);border-radius:var(--r);padding:7px 12px;box-shadow:0 1px 3px rgba(0,0,0,0.07)}
+.stat-card-stack{display:flex;flex-direction:column;gap:8px}
+.stat-lbl{font-size:9px;color:var(--tx3);margin-bottom:1px;text-transform:uppercase;letter-spacing:.07em;font-weight:600}
+.stat-val{font-size:20px;font-weight:300;color:#1C1F26;line-height:1.1}
 .stat-val.g{color:var(--green)}.stat-val.a{color:var(--amber)}.stat-val.r{color:var(--red)}.stat-val.b{color:var(--blue)}
-.pill{display:inline-flex;align-items:center;justify-content:center;font-size:11px;padding:0 8px;height:24px;min-width:82px;border-radius:20px;font-weight:500;white-space:nowrap}
-.p-ns{background:var(--surf2);color:var(--tx2)}.p-up{background:var(--red-bg);color:var(--red-tx);}.p-ot{background:var(--green-bg);color:#27500A}.p-ar{background:var(--amber-bg);color:#633806}.p-dn{background:var(--blue-bg);color:var(--blue-tx)}.p-dim{background:var(--purple-bg);color:var(--purple-tx);font-size:10px}.p-lead{background:var(--purple-bg);color:var(--purple-tx)}.p-lag{background:var(--teal-bg);color:var(--teal-tx)}.p-rec{background:#EDE9FE;color:#5B21B6}
-.score-chip{font-family:var(--mono);font-size:11px;padding:2px 7px;border-radius:20px;background:var(--surf2);color:var(--tx2)}
-.rock-card{background:var(--surf);border:1px solid var(--bdr);border-radius:var(--rlg);margin-bottom:8px;overflow:hidden}
-.rock-hdr{display:flex;align-items:center;gap:8px;padding:11px 14px;cursor:pointer}
+.pill{display:inline-flex;align-items:center;justify-content:center;font-size:11px;padding:0 9px;height:22px;min-width:82px;border-radius:4px;font-weight:600;white-space:nowrap;text-transform:uppercase;letter-spacing:.04em}
+.p-ns{background:#E0DDD6;color:#4A4840}.p-up{background:#F0C8C8;color:#7A1818;}.p-ot{background:#B8DCA0;color:#1E4A08}.p-ar{background:#F5D8A0;color:#6A3806}.p-dn{background:#B8D4F0;color:#0C3D75}.p-dim{background:var(--purple-bg);color:var(--purple-tx);font-size:10px}.p-lead{background:var(--purple-bg);color:var(--purple-tx)}.p-lag{background:var(--teal-bg);color:var(--teal-tx)}.p-rec{background:#D8D4F8;color:#332E88}
+.score-chip{font-family:var(--mono);font-size:11px;padding:2px 7px;border-radius:4px;background:var(--surf2);color:var(--tx2);border:1px solid var(--bdr)}
+.rock-card{background:var(--surf);border:1px solid var(--bdr);border-radius:var(--rlg);margin-bottom:10px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,0.08)}
+.rock-hdr{display:flex;align-items:center;gap:8px;padding:12px 14px;cursor:pointer;border-left:4px solid var(--bdr2)}
 .rock-hdr:hover{background:var(--surf2)}
+/* Per-rock accent colors */
+.rock-card:nth-child(6n+1) .rock-hdr{border-left-color:#1558A0;background:linear-gradient(90deg,#DDEAF820 0%,transparent 60%)}
+.rock-card:nth-child(6n+2) .rock-hdr{border-left-color:#2D5E0A;background:linear-gradient(90deg,#D6EDBC20 0%,transparent 60%)}
+.rock-card:nth-child(6n+3) .rock-hdr{border-left-color:#7A4508;background:linear-gradient(90deg,#F8E2BA20 0%,transparent 60%)}
+.rock-card:nth-child(6n+4) .rock-hdr{border-left-color:#4A42AA;background:linear-gradient(90deg,#E4E2FC20 0%,transparent 60%)}
+.rock-card:nth-child(6n+5) .rock-hdr{border-left-color:#0A6050;background:linear-gradient(90deg,#C8EDE220 0%,transparent 60%)}
+.rock-card:nth-child(6n+6) .rock-hdr{border-left-color:#992020;background:linear-gradient(90deg,#F8DADA20 0%,transparent 60%)}
 .rock-num{font-size:11px;color:var(--tx3);min-width:16px;font-family:var(--mono)}
 .rock-info{flex:1;min-width:0}
 .rock-title{font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rock-card.expanded .rock-title{white-space:normal;overflow:visible;text-overflow:unset}
@@ -946,11 +956,11 @@ function buildRockCard(type,rock,ri) {
     var tabBar=document.createElement('div');
     tabBar.className='sr-tabs';
     var t1=document.createElement('button'); t1.className='sr-tab'+(tab==='subrocks'?' active':''); t1.textContent='Sub-Rocks';
-    var t2=document.createElement('button'); t2.className='sr-tab'+(tab==='milestones'?' active':''); t2.textContent='Week-by-Week Milestones';
-    var t3=document.createElement('button'); t3.className='sr-tab'+(tab==='kpis'?' active':''); t3.textContent='KPIs';
+    var t2=document.createElement('button'); t2.className='sr-tab'+(tab==='kpis'?' active':''); t2.textContent='KPIs';
+    var t3=document.createElement('button'); t3.className='sr-tab'+(tab==='milestones'?' active':''); t3.textContent='Week-by-Week Milestones';
     t1.addEventListener('click',function(e){e.stopPropagation();setSRTab(type,rock.id,'subrocks');});
-    t2.addEventListener('click',function(e){e.stopPropagation();setSRTab(type,rock.id,'milestones');});
-    t3.addEventListener('click',function(e){e.stopPropagation();setSRTab(type,rock.id,'kpis');});
+    t2.addEventListener('click',function(e){e.stopPropagation();setSRTab(type,rock.id,'kpis');});
+    t3.addEventListener('click',function(e){e.stopPropagation();setSRTab(type,rock.id,'milestones');});
     tabBar.appendChild(t1); tabBar.appendChild(t2); tabBar.appendChild(t3);
     wrap.appendChild(tabBar);
 
@@ -967,12 +977,12 @@ function buildRockCard(type,rock,ri) {
 
 function buildSubrocksTab(container,type,rock,ri) {
   var isMobile = window.innerWidth <= 768;
-  var cols = isMobile ? '20px 1fr 90px 90px 32px' : '24px 1fr 72px 110px 130px 130px 110px 80px 32px';
+  var cols = isMobile ? '20px 1fr 90px 90px 32px' : '24px 1fr 100px 110px 64px 130px 130px 110px 32px';
   var hdr=document.createElement('div');
   hdr.className='sr-hdr'; hdr.style.cssText='display:grid;grid-template-columns:'+cols+';gap:6px;align-items:center;';
   hdr.innerHTML = isMobile
     ? '<span class="col"></span><span class="col">Sub-Rock</span><span class="col">Dept</span><span class="col">Status</span><span class="col"></span>'
-    : '<span class="col"></span><span class="col">Sub-Rock</span><span class="col">Owner</span><span class="col">Department</span><span class="col">Target Date</span><span class="col">Conclusion Date</span><span class="col">Status</span><span class="col">Recurring</span><span class="col"></span>';
+    : '<span class="col"></span><span class="col">Sub-Rock</span><span class="col">Owner</span><span class="col">Department</span><span class="col">Recurring</span><span class="col">Target Date</span><span class="col">Conclusion Date</span><span class="col">Status</span><span class="col"></span>';
   container.appendChild(hdr);
 
   var sortedSubrocks = sortSubrocksByStatus(rock.subrocks);
@@ -1002,7 +1012,7 @@ function buildSubrocksTab(container,type,rock,ri) {
     }
 
     var ownerEl=document.createElement('div'); ownerEl.className='ed'; ownerEl.style.cssText='color:var(--tx2);font-size:11px;word-break:break-word;line-height:1.3;text-align:left;'; ownerEl.contentEditable='true'; ownerEl.textContent=sub.owner||'';
-    ownerEl.addEventListener('blur',function(){sub.owner=this.textContent; save(); renderDashInd(); });
+    ownerEl.addEventListener('blur',function(){sub.owner=this.textContent.trim(); save(); renderDashInd(); });
 
     var portcoSel=document.createElement('select'); portcoSel.className='ctrl'; portcoSel.style.cssText='font-size:11px;width:100%';
     var emptyPc=document.createElement('option'); emptyPc.value=''; emptyPc.textContent='— none —'; portcoSel.appendChild(emptyPc);
@@ -1067,7 +1077,7 @@ function buildSubrocksTab(container,type,rock,ri) {
       row.appendChild(idx); row.appendChild(info); row.appendChild(portcoSel); row.appendChild(stSel); row.appendChild(delBtn);
     } else {
       row.appendChild(idx); row.appendChild(info); row.appendChild(ownerEl);
-      row.appendChild(portcoSel); row.appendChild(targetInp); row.appendChild(doneInp); row.appendChild(stSel); row.appendChild(recWrap); row.appendChild(delBtn);
+      row.appendChild(portcoSel); row.appendChild(recWrap); row.appendChild(targetInp); row.appendChild(doneInp); row.appendChild(stSel); row.appendChild(delBtn);
     }
     container.appendChild(row);
   });
@@ -1492,15 +1502,16 @@ function renderAllRocks() {
   var rocks = D.rocks;
 
   // Aggregate stats
-  var ot=0, ar2=0, dn=0, ns2=0, up2=0;
+  var ot=0, ar2=0, dn=0, ns2=0, up2=0, rec2=0;
   rocks.forEach(function(r) {
     if (!r.subrocks.length) { up2++; return; }
     r.subrocks.forEach(function(s) {
+      if (s.recurring) { rec2++; return; }
       if (!s.targetDate) up2++;
-      if (s.status==='On Track') ot++;
+      else if (s.status==='On Track') ot++;
       else if (s.status==='At Risk') ar2++;
       else if (s.status==='Done') dn++;
-      else if (s.targetDate) ns2++;
+      else ns2++;
     });
   });
 
@@ -1508,21 +1519,42 @@ function renderAllRocks() {
 
   if (statsEl) {
     statsEl.innerHTML = '';
-    var statCards = [
-      {label:'Unplanned',  val:up2, color:'var(--amber)', filter:'Unplanned'},
-      {label:'Not Started',val:ns2, color:'var(--tx2)',   filter:'Not Started'},
-      {label:'On Track',   val:ot,  color:'var(--green)', filter:'On Track'},
-      {label:'At Risk',    val:ar2, color:'var(--amber)', filter:'At Risk'},
-      {label:'Done',       val:dn,  color:'var(--blue)',  filter:'Done'}
-    ];
-    statCards.forEach(function(c) {
-      var isActive = af === c.filter;
+    statsEl.style.gridTemplateColumns = '1fr 1fr 1fr 1fr';
+
+    function makeCard(label, val, grad, txtColor, filter) {
+      var isActive = af === filter;
       var div = document.createElement('div'); div.className = 'stat-card';
-      div.style.cssText = 'cursor:pointer;transition:box-shadow .15s,background .15s;' + (isActive ? 'box-shadow:0 0 0 2px '+c.color+';background:rgba(24,95,165,0.06);' : '');
-      div.innerHTML = '<div class="stat-lbl">'+c.label+'</div><div class="stat-val" style="color:'+c.color+'">'+c.val+'</div>' + (isActive ? '<div style="font-size:9px;color:'+c.color+';margin-top:2px;text-transform:uppercase;letter-spacing:.05em;font-weight:500">Active</div>' : '');
-      div.addEventListener('click', function() { toggleFilter('allrocks', c.filter); });
-      statsEl.appendChild(div);
-    });
+      div.style.cssText = 'cursor:pointer;background:'+grad+';border:1px solid rgba(0,0,0,0.07);transition:box-shadow .15s;'+(isActive?'box-shadow:0 0 0 2px '+txtColor+';':'box-shadow:0 1px 4px rgba(0,0,0,0.07);');
+      div.innerHTML = '<div class="stat-lbl" style="color:'+txtColor+';opacity:0.65">'+label+'</div>'
+        +'<div class="stat-val" style="color:'+txtColor+';font-size:22px;font-weight:300;letter-spacing:-.5px;line-height:1.1">'+val+'</div>'
+        +(isActive?'<div style="font-size:9px;color:'+txtColor+';margin-top:2px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;opacity:.7">● filtered</div>':'');
+      div.addEventListener('click', function() { toggleFilter('allrocks', filter); });
+      return div;
+    }
+
+    // Col 1: Unplanned — full height
+    statsEl.appendChild(makeCard('Unplanned', up2,
+      'linear-gradient(145deg,#F2E8E8,#EDD8D8)', '#6B2020', 'Unplanned'));
+
+    // Col 2: Not Started — full height
+    statsEl.appendChild(makeCard('Not Started', ns2,
+      'linear-gradient(145deg,#EEECEA,#E4E1DC)', '#3A3830', 'Not Started'));
+
+    // Col 3: On Track (top) + At Risk (bottom) stacked
+    var stack1 = document.createElement('div'); stack1.className = 'stat-card-stack';
+    stack1.appendChild(makeCard('On Track', ot,
+      'linear-gradient(145deg,#E8F2E0,#D8ECC8)', '#244D0E', 'On Track'));
+    stack1.appendChild(makeCard('At Risk', ar2,
+      'linear-gradient(145deg,#F5EDD8,#EDE0C0)', '#5A3408', 'At Risk'));
+    statsEl.appendChild(stack1);
+
+    // Col 4: Recurring (top) + Done (bottom) stacked
+    var stack2 = document.createElement('div'); stack2.className = 'stat-card-stack';
+    stack2.appendChild(makeCard('Recurring', rec2,
+      'linear-gradient(145deg,#EAE8F8,#DCDAF0)', '#38348A', 'Recurring'));
+    stack2.appendChild(makeCard('Done', dn,
+      'linear-gradient(145deg,#E0EAF5,#CCD8EC)', '#1A3D6B', 'Done'));
+    statsEl.appendChild(stack2);
   }
 
   el.innerHTML = '';
@@ -1534,8 +1566,10 @@ function renderAllRocks() {
 
   var filteredRocks = sortByScore(rocks).filter(function(rock) {
     if (!af) return true;
-    if (af==='Unplanned') return !rock.subrocks.length || rock.subrocks.some(function(s){ return !s.targetDate; });
+    if (af==='Unplanned') return !rock.subrocks.length || rock.subrocks.some(function(s){ return !s.recurring && !s.targetDate; });
+    if (af==='Recurring') return rock.subrocks.some(function(s){ return s.recurring; });
     return rock.subrocks.some(function(s) {
+      if (s.recurring) return false;
       if (af==='Not Started') return s.targetDate && (s.status==='Not Started'||!s.status);
       return s.status === af;
     });
@@ -1559,7 +1593,16 @@ function renderAllRocks() {
 function getAllSubs() {
   var all = [];
   D.rocks.forEach(function(r) {
-    r.subrocks.forEach(function(s) { all.push({sub:s, rock:r, type:'allrocks'}); });
+    r.subrocks.forEach(function(s) {
+      var owners = (s.owner||'').split(',').map(function(o){ return o.trim(); }).filter(Boolean);
+      if(owners.length <= 1) {
+        all.push({sub:s, rock:r, type:'allrocks', ownerKey: owners[0]||''});
+      } else {
+        owners.forEach(function(o) {
+          all.push({sub:s, rock:r, type:'allrocks', ownerKey: o});
+        });
+      }
+    });
   });
   return all;
 }
@@ -1770,7 +1813,7 @@ function renderDashPortco() {
 function renderDashInd() {
   var all=getAllSubs(); var groups={};
   all.forEach(function(item){
-    var o=(item.sub.owner||'').trim(); if(!o||o.startsWith('[')) return;
+    var o=(item.ownerKey||'').trim(); if(!o||o.startsWith('[')) return;
     if(!groups[o]) groups[o]=[]; groups[o].push(item);
   });
   var sel=document.getElementById('filt-person'); var cur=sel?sel.value:'';
@@ -1797,21 +1840,26 @@ function buildPersonMilestoneView(name, items) {
   for(var ci=0;ci<WEEK_DATES.length;ci++){ var wd=parseWD(WEEK_DATES[ci]); if(wd&&today<=wd){ currentWeekIdx=ci; break; } }
   if(currentWeekIdx===-1) currentWeekIdx=WEEK_DATES.length-1;
 
+  // Only show current week and future
+  var visibleWeeks=[];
+  for(var wi=currentWeekIdx;wi<WEEK_DATES.length;wi++) visibleWeeks.push(wi);
+
   var ot=items.filter(function(i){return i.sub.status==='On Track';}).length;
   var ar=items.filter(function(i){return i.sub.status==='At Risk';}).length;
   var dn=items.filter(function(i){return i.sub.status==='Done';}).length;
-  var up=items.filter(function(i){return !i.sub.targetDate;}).length;
+  var up=items.filter(function(i){return !i.sub.recurring&&!i.sub.targetDate;}).length;
   var ns=items.filter(function(i){return i.sub.targetDate&&(i.sub.status==='Not Started'||!i.sub.status);}).length;
+  var rec=items.filter(function(i){return i.sub.recurring;}).length;
 
   if(!D.indCollapsed) D.indCollapsed={};
   var isCollapsed=D.indCollapsed[name]||false;
 
   var wrap=document.createElement('div');
-  wrap.style.cssText='margin-bottom:10px;';
+  wrap.style.cssText='margin-bottom:12px;border-radius:var(--rlg);overflow:hidden;border:1px solid #C5D4E8;box-shadow:0 2px 6px rgba(0,0,0,0.07);';
 
-  // Person header
+  // Person header - dark blue
   var hdr=document.createElement('div');
-  hdr.style.cssText='display:flex;align-items:center;gap:8px;padding:10px 14px;background:#E8EFF8;border:1px solid #C5D4E8;border-radius:'+(isCollapsed?'var(--r)':'var(--r) var(--r) 0 0')+';cursor:pointer;user-select:none;';
+  hdr.style.cssText='display:flex;align-items:center;gap:8px;padding:10px 14px;background:#1558A0;cursor:pointer;user-select:none;';
   hdr.addEventListener('click',function(){
     if(!D.indCollapsed) D.indCollapsed={};
     D.indCollapsed[name]=!D.indCollapsed[name];
@@ -1820,21 +1868,22 @@ function buildPersonMilestoneView(name, items) {
 
   var chevEl=document.createElement('span');
   chevEl.innerHTML='<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transition:transform .2s;transform:rotate('+(isCollapsed?'-90deg':'0deg')+')"><polyline points="6 9 12 15 18 9"/></svg>';
-  chevEl.style.cssText='display:flex;align-items:center;color:var(--tx3);flex-shrink:0;';
+  chevEl.style.cssText='display:flex;align-items:center;color:rgba(255,255,255,0.7);flex-shrink:0;';
 
   var nameEl=document.createElement('div'); nameEl.style.cssText='flex:1;';
-  var nameSpan=document.createElement('span'); nameSpan.style.cssText='font-size:13px;font-weight:600;color:#185FA5;'; nameSpan.textContent=name;
-  var cntSpan=document.createElement('span'); cntSpan.style.cssText='font-size:11px;color:var(--tx3);margin-left:6px;'; cntSpan.textContent='['+items.length+']';
+  var nameSpan=document.createElement('span'); nameSpan.style.cssText='font-size:13px;font-weight:600;color:#fff;'; nameSpan.textContent=name;
+  var cntSpan=document.createElement('span'); cntSpan.style.cssText='font-size:11px;color:rgba(255,255,255,0.6);margin-left:6px;'; cntSpan.textContent='['+items.length+' sub-rocks]';
   nameEl.appendChild(nameSpan); nameEl.appendChild(cntSpan);
 
   var metaEl=document.createElement('div');
-  metaEl.style.cssText='font-size:11px;color:var(--tx2);display:flex;gap:10px;flex-wrap:wrap;';
+  metaEl.style.cssText='font-size:11px;display:flex;gap:10px;flex-wrap:wrap;';
   metaEl.innerHTML=
-    (up?'<span style="color:var(--amber)">'+up+' unplanned</span>':'')+
-    (ns?'<span style="color:var(--tx2)">'+ns+' not started</span>':'')+
-    (ot?'<span style="color:var(--green)">'+ot+' on track</span>':'')+
-    (ar?'<span style="color:var(--red)">'+ar+' at risk</span>':'')+
-    (dn?'<span style="color:var(--blue)">'+dn+' done</span>':'');
+    (up?'<span style="color:#FBBF24">'+up+' unplanned</span>':'')+
+    (ns?'<span style="color:rgba(255,255,255,0.6)">'+ns+' not started</span>':'')+
+    (rec?'<span style="color:#C4B5FD">'+rec+' recurring</span>':'')+
+    (ot?'<span style="color:#86EFAC">'+ot+' on track</span>':'')+
+    (ar?'<span style="color:#FCA5A5">'+ar+' at risk</span>':'')+
+    (dn?'<span style="color:#93C5FD">'+dn+' done</span>':'');
 
   hdr.appendChild(chevEl); hdr.appendChild(nameEl); hdr.appendChild(metaEl);
   wrap.appendChild(hdr);
@@ -1842,154 +1891,152 @@ function buildPersonMilestoneView(name, items) {
   if(isCollapsed) return wrap;
 
   // Group items by rock
-  var rockGroups={};
-  var rockOrder=[];
+  var rockGroups={}; var rockOrder=[];
   items.forEach(function(item){
     var rid=item.rock.id;
     if(!rockGroups[rid]){ rockGroups[rid]={rock:item.rock,type:item.type,items:[]}; rockOrder.push(rid); }
     rockGroups[rid].items.push(item);
   });
 
-  var bodyWrap=document.createElement('div');
-  bodyWrap.style.cssText='background:var(--surf);border:1px solid var(--bdr);border-top:none;border-radius:0 0 var(--r) var(--r);overflow:hidden;';
+  // Single unified table
+  var tableWrap=document.createElement('div');
+  tableWrap.style.cssText='overflow-x:auto;background:var(--surf);';
+  var tbl=document.createElement('table'); tbl.className='ms-table';
+  tbl.style.cssText='border-collapse:collapse;width:100%;min-width:600px;';
 
-  // Rock key for collapse state: person+rockid
-  if(!D.indRockCollapsed) D.indRockCollapsed={};
+  // Header
+  var thead=document.createElement('thead');
+  var hr=document.createElement('tr');
+  [['Rock','min-width:140px;position:sticky;left:0;background:var(--surf2);border-right:2px solid var(--bdr2);'],
+   ['Sub-Rock','min-width:160px;'],
+   ['Target','width:86px;text-align:center'],
+   ['Conclusion','width:86px;text-align:center'],
+   ['Status','width:100px']
+  ].forEach(function(p){
+    var th=document.createElement('th'); th.style.cssText=p[1]; th.textContent=p[0]; hr.appendChild(th);
+  });
+  visibleWeeks.forEach(function(wi){
+    var w=WEEK_DATES[wi];
+    var th=document.createElement('th'); var isCurr=wi===currentWeekIdx;
+    th.style.cssText='width:48px;text-align:center;font-size:10px;'+(isCurr?'background:rgba(21,88,160,0.08);border-top:2px solid #1558A0;':'');
+    th.innerHTML=isCurr?'<span style="font-weight:700;color:#1558A0">'+w+'</span><span style="display:block;font-size:9px;color:#1558A0;opacity:.7">now</span>':w;
+    hr.appendChild(th);
+  });
+  var thDel=document.createElement('th'); thDel.style.width='28px'; hr.appendChild(thDel);
+  thead.appendChild(hr); tbl.appendChild(thead);
+
+  var tbody=document.createElement('tbody');
 
   rockOrder.forEach(function(rid, rIdx){
     var group=rockGroups[rid];
     var rock=group.rock;
     var type=group.type;
     var rockItems=group.items;
-    var rockKey=name+'|'+rid;
-    var rockCollapsed=D.indRockCollapsed[rockKey]||false;
+    var rowCount=rockItems.length;
 
-    // Rock sub-header
-    var rockHdr=document.createElement('div');
-    rockHdr.style.cssText='display:flex;align-items:center;gap:8px;padding:7px 14px 7px 24px;background:var(--surf2);border-top:'+(rIdx>0?'1px solid var(--bdr)':'1px solid #C5D4E8')+';cursor:pointer;user-select:none;';
-    rockHdr.addEventListener('click',function(){
-      if(!D.indRockCollapsed) D.indRockCollapsed={};
-      D.indRockCollapsed[rockKey]=!D.indRockCollapsed[rockKey];
-      save(); renderDashInd();
-    });
-
-    var rChev=document.createElement('span');
-    rChev.innerHTML='<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transition:transform .2s;transform:rotate('+(rockCollapsed?'-90deg':'0deg')+')"><polyline points="6 9 12 15 18 9"/></svg>';
-    rChev.style.cssText='display:flex;align-items:center;color:var(--tx3);flex-shrink:0;margin-left:6px;';
-
-    var rTitle=document.createElement('span'); rTitle.style.cssText='font-size:12px;font-weight:500;color:var(--tx);flex:1;'; rTitle.textContent=rock.title;
-    var rCnt=document.createElement('span'); rCnt.style.cssText='font-size:11px;color:var(--tx3);'; rCnt.textContent=rockItems.length+' sub-rocks';
-
-    // Rock mini stats
-    var rOt=rockItems.filter(function(i){return i.sub.status==='On Track';}).length;
-    var rAr=rockItems.filter(function(i){return i.sub.status==='At Risk';}).length;
-    var rDn=rockItems.filter(function(i){return i.sub.status==='Done';}).length;
-    var rUp=rockItems.filter(function(i){return !i.sub.targetDate;}).length;
-    var rMeta=document.createElement('span'); rMeta.style.cssText='font-size:11px;display:flex;gap:8px;';
-    rMeta.innerHTML=
-      (rUp?'<span style="color:var(--amber)">'+rUp+' unplanned</span>':'')+
-      (rOt?'<span style="color:var(--green)">'+rOt+' on track</span>':'')+
-      (rAr?'<span style="color:var(--red)">'+rAr+' at risk</span>':'')+
-      (rDn?'<span style="color:var(--blue)">'+rDn+' done</span>':'');
-
-    rockHdr.appendChild(rChev); rockHdr.appendChild(rTitle); rockHdr.appendChild(rCnt); rockHdr.appendChild(rMeta);
-    bodyWrap.appendChild(rockHdr);
-
-    if(rockCollapsed) return;
-
-    // Table for this rock's sub-rocks
-    var tableWrap=document.createElement('div');
-    tableWrap.style.cssText='overflow-x:auto;border-top:1px solid var(--bdr);';
-    var tbl=document.createElement('table'); tbl.className='ms-table';
-
-    var thead=document.createElement('thead');
-    var hr=document.createElement('tr');
-    [['Sub-Rock','min-width:160px;position:sticky;left:0;background:var(--surf2);'],
-     ['Target','width:90px;text-align:center'],
-     ['Conclusion','width:100px;text-align:center'],
-     ['Status','width:100px']].forEach(function(p){
-      var th=document.createElement('th'); th.style.cssText=p[1]; th.textContent=p[0]; hr.appendChild(th);
-    });
-    WEEK_DATES.forEach(function(w,wi){
-      var th=document.createElement('th'); var isCurr=wi===currentWeekIdx;
-      th.style.cssText='width:48px;text-align:center;font-size:10px;'+(isCurr?'background:rgba(24,95,165,0.07);border-top:2px solid var(--blue);':'');
-      th.innerHTML=isCurr?'<span style="font-weight:600;color:var(--blue)">'+w+'</span><span style="display:block;font-size:9px;color:var(--blue);opacity:.7">now</span>':w;
-      hr.appendChild(th);
-    });
-    var thDel=document.createElement('th'); thDel.style.cssText='width:32px;'; hr.appendChild(thDel);
-    thead.appendChild(hr); tbl.appendChild(thead);
-
-    var tbody=document.createElement('tbody');
-    rockItems.forEach(function(item){
+    rockItems.forEach(function(item, siIdx){
       var sub=item.sub;
       var targetIdx=dateToWkIdx(parseISO(sub.targetDate));
       var doneIdx=sub.doneDate?dateToWkIdx(parseISO(sub.doneDate)):-1;
 
-      var tr=document.createElement('tr'); tr.style.verticalAlign='top';
-      if(!sub.targetDate) tr.style.background='rgba(163,45,45,0.04)';
+      var tr=document.createElement('tr');
+      tr.style.verticalAlign='top';
+      var isFirstOfRock=siIdx===0;
+      var isLastOfRock=siIdx===rowCount-1;
+      var isLastRock=rIdx===rockOrder.length-1;
 
-      // Editable title
+      // Rock cell — only on first sub-rock, spans all rows for this rock
+      if(isFirstOfRock){
+        var tdRock=document.createElement('td');
+        tdRock.rowSpan=rowCount;
+        tdRock.style.cssText='position:sticky;left:0;background:var(--surf2);border-right:2px solid var(--bdr2);font-size:11px;font-weight:600;color:var(--tx);word-break:break-word;line-height:1.4;vertical-align:top;padding:8px 10px;'+(rIdx>0?'border-top:2px solid var(--bdr2);':'');
+        tdRock.textContent=rock.title;
+        tr.appendChild(tdRock);
+      }
+
+      // Sub-rock title
       var tdTitle=document.createElement('td');
-      tdTitle.style.cssText='position:sticky;left:0;background:'+(sub.targetDate?'var(--surf)':'rgba(255,245,245,1)')+';font-size:12px;font-weight:500;word-break:break-word;line-height:1.4;min-width:160px;';
-      var titleEl=document.createElement('div'); titleEl.className='ed'; titleEl.style.fontWeight='500'; titleEl.contentEditable='true'; titleEl.textContent=sub.title||'';
+      tdTitle.style.cssText='font-size:12px;font-weight:500;word-break:break-word;line-height:1.4;background:'+(sub.recurring?'rgba(74,66,170,0.04)':(sub.targetDate?'var(--surf)':'rgba(153,32,32,0.03)'))+';'+(rIdx>0&&isFirstOfRock?'border-top:2px solid var(--bdr2);':'');
+      var titleEl=document.createElement('div'); titleEl.className='ed'; titleEl.contentEditable='true'; titleEl.textContent=sub.title||'';
       titleEl.addEventListener('blur',function(){ sub.title=this.textContent.trim(); save(); renderAllRocks(); });
       titleEl.addEventListener('keydown',function(e){ if(e.key==='Enter'){e.preventDefault();this.blur();} });
       tdTitle.appendChild(titleEl);
+      if(sub.recurring){
+        var rTag=document.createElement('span'); rTag.textContent='recurring';
+        rTag.style.cssText='font-size:9px;font-weight:600;text-transform:uppercase;color:#332E88;background:#D8D4F8;padding:1px 5px;border-radius:3px;margin-top:2px;display:inline-block;letter-spacing:.04em;';
+        tdTitle.appendChild(rTag);
+      }
+      tr.appendChild(tdTitle);
+
+      function borderTopStyle(){ return rIdx>0&&isFirstOfRock?'border-top:2px solid var(--bdr2);':''; }
 
       // Target date
-      var tdTarget=document.createElement('td'); tdTarget.style.cssText='text-align:center;vertical-align:middle;';
-      var targetInp=document.createElement('input'); targetInp.type='date'; targetInp.className='ctrl'; targetInp.style.cssText='font-size:11px;width:100%;min-width:90px;'; targetInp.value=sub.targetDate||'';
-      targetInp.addEventListener('change',function(){ sub.targetDate=this.value; save(); renderDashInd(); renderAllRocks(); });
-      tdTarget.appendChild(targetInp);
+      var tdTarget=document.createElement('td'); tdTarget.style.cssText='text-align:center;vertical-align:middle;'+borderTopStyle();
+      if(!sub.recurring){
+        var targetInp=document.createElement('input'); targetInp.type='date'; targetInp.className='ctrl'; targetInp.style.cssText='font-size:11px;width:100%;min-width:80px;'; targetInp.value=sub.targetDate||'';
+        targetInp.addEventListener('change',function(){ sub.targetDate=this.value; save(); renderDashInd(); renderAllRocks(); });
+        tdTarget.appendChild(targetInp);
+      }
+      tr.appendChild(tdTarget);
 
       // Conclusion date
-      var tdDone=document.createElement('td'); tdDone.style.cssText='text-align:center;vertical-align:middle;';
-      var doneInp=document.createElement('input'); doneInp.type='date'; doneInp.className='ctrl'; doneInp.style.cssText='font-size:11px;width:100%;min-width:90px;'; doneInp.value=sub.doneDate||'';
-      doneInp.addEventListener('change',function(){ sub.doneDate=this.value; if(this.value) sub.status='Done'; save(); renderDashInd(); renderAllRocks(); });
-      tdDone.appendChild(doneInp);
+      var tdDone=document.createElement('td'); tdDone.style.cssText='text-align:center;vertical-align:middle;'+borderTopStyle();
+      if(!sub.recurring){
+        var doneInp=document.createElement('input'); doneInp.type='date'; doneInp.className='ctrl'; doneInp.style.cssText='font-size:11px;width:100%;min-width:80px;'; doneInp.value=sub.doneDate||'';
+        doneInp.addEventListener('change',function(){ sub.doneDate=this.value; if(this.value) sub.status='Done'; save(); renderDashInd(); renderAllRocks(); });
+        tdDone.appendChild(doneInp);
+      }
+      tr.appendChild(tdDone);
 
       // Status
-      var tdStatus=document.createElement('td'); tdStatus.style.cssText='vertical-align:middle;';
-      var stSel=document.createElement('select'); stSel.className='ctrl'; stSel.style.cssText='font-size:11px;width:100%;';
-      if(!sub.targetDate){ var upOpt=document.createElement('option'); upOpt.value='Unplanned'; upOpt.textContent='Unplanned'; upOpt.selected=true; stSel.appendChild(upOpt); }
-      STATUSES.forEach(function(s){ var o=document.createElement('option'); o.textContent=s; if(sub.targetDate&&sub.status===s) o.selected=true; stSel.appendChild(o); });
-      stSel.addEventListener('change',function(){ sub.status=this.value==='Unplanned'?'Not Started':this.value; save(); renderDashInd(); renderAllRocks(); });
-      tdStatus.appendChild(stSel);
+      var tdStatus=document.createElement('td'); tdStatus.style.cssText='vertical-align:middle;'+borderTopStyle();
+      if(sub.recurring){
+        tdStatus.innerHTML='<span style="font-size:10px;font-weight:600;color:#332E88;background:#D8D4F8;padding:2px 7px;border-radius:3px;text-transform:uppercase;letter-spacing:.04em;">Recurring</span>';
+      } else {
+        var stSel=document.createElement('select'); stSel.className='ctrl'; stSel.style.cssText='font-size:11px;width:100%;';
+        if(!sub.targetDate){ var upOpt=document.createElement('option'); upOpt.value='Unplanned'; upOpt.textContent='Unplanned'; upOpt.selected=true; stSel.appendChild(upOpt); }
+        STATUSES.forEach(function(s){ var o=document.createElement('option'); o.textContent=s; if(sub.targetDate&&sub.status===s) o.selected=true; stSel.appendChild(o); });
+        stSel.addEventListener('change',function(){ sub.status=this.value==='Unplanned'?'Not Started':this.value; save(); renderDashInd(); renderAllRocks(); });
+        tdStatus.appendChild(stSel);
+      }
+      tr.appendChild(tdStatus);
 
-      tr.appendChild(tdTitle); tr.appendChild(tdTarget); tr.appendChild(tdDone); tr.appendChild(tdStatus);
-
-      // Week dots
-      WEEK_DATES.forEach(function(w,wi){
-        var td=document.createElement('td'); var isCurr=wi===currentWeekIdx;
-        td.style.cssText='text-align:center;padding:6px 3px;'+(isCurr?'background:rgba(24,95,165,0.07);':'');
-        var isTarget=wi===targetIdx; var isDone=wi===doneIdx; var isPast=doneIdx>=0&&wi<doneIdx;
-        var dot=document.createElement('button');
-        dot.style.cssText='width:16px;height:16px;border-radius:50%;border:none;cursor:pointer;display:inline-block;transition:transform .1s;outline:none;';
-        if(isDone){dot.style.background='var(--green)';dot.title='Done';}
-        else if(isPast){dot.style.background='var(--green-bg)';dot.style.border='1.5px solid var(--green)';}
-        else if(isTarget){dot.style.background='var(--red-bg)';dot.style.border='2px solid var(--red)';dot.title='Target: '+w+' — right-click or Shift+click to move';}
-        else{dot.style.background='var(--surf3)';dot.style.border='1.5px solid var(--bdr2)';dot.title='Click to mark done · Shift+click or right-click to set as target';}
-        dot.addEventListener('mouseenter',function(){this.style.transform='scale(1.25)';});
-        dot.addEventListener('mouseleave',function(){this.style.transform='scale(1)';});
-        dot.addEventListener('click',function(e){
-          if(e.shiftKey){
-            var wd=parseWD(WEEK_DATES[wi]); if(wd){var mm=String(wd.getMonth()+1).padStart(2,'0');var dd=String(wd.getDate()).padStart(2,'0');sub.targetDate=wd.getFullYear()+'-'+mm+'-'+dd;}
-            save(); renderDashInd(); renderAllRocks(); return;
-          }
-          if(isDone&&doneIdx===wi){sub.doneDate='';sub.status='On Track';}
-          else{var wd=parseWD(WEEK_DATES[wi]);if(wd){var mm=String(wd.getMonth()+1).padStart(2,'0');var dd=String(wd.getDate()).padStart(2,'0');sub.doneDate=wd.getFullYear()+'-'+mm+'-'+dd;}sub.status='Done';}
-          save(); renderDashInd(); renderAllRocks();
+      // Week dots — visible weeks only
+      if(sub.recurring){
+        var tdRec=document.createElement('td'); tdRec.colSpan=visibleWeeks.length;
+        tdRec.style.cssText='padding:6px 10px;vertical-align:middle;'+borderTopStyle();
+        tdRec.innerHTML='<div style="background:#E0DCFC;border:1px solid #C4B5FD;border-radius:4px;padding:4px 10px;font-size:11px;font-weight:600;color:#332E88;text-align:center;">↻ Recurring Task</div>';
+        tr.appendChild(tdRec);
+      } else {
+        visibleWeeks.forEach(function(wi){
+          var w=WEEK_DATES[wi];
+          var td=document.createElement('td'); var isCurr=wi===currentWeekIdx;
+          td.style.cssText='text-align:center;padding:6px 3px;'+(isCurr?'background:rgba(21,88,160,0.06);':'')+(rIdx>0&&isFirstOfRock?'border-top:2px solid var(--bdr2);':'');
+          var isTarget=wi===targetIdx; var isDone=wi===doneIdx; var isPast=doneIdx>=0&&wi<doneIdx;
+          var dot=document.createElement('button');
+          dot.style.cssText='width:16px;height:16px;border-radius:50%;border:none;cursor:pointer;display:inline-block;transition:transform .1s;outline:none;';
+          if(isDone){dot.style.background='var(--green)';dot.title='Done';}
+          else if(isPast){dot.style.background='var(--green-bg)';dot.style.border='1.5px solid var(--green)';}
+          else if(isTarget){dot.style.background='var(--red-bg)';dot.style.border='2px solid var(--red)';dot.title='Target: '+w;}
+          else{dot.style.background='var(--surf3)';dot.style.border='1.5px solid var(--bdr2)';dot.title=w;}
+          dot.addEventListener('mouseenter',function(){this.style.transform='scale(1.25)';});
+          dot.addEventListener('mouseleave',function(){this.style.transform='scale(1)';});
+          dot.addEventListener('click',function(e){
+            if(e.shiftKey){var wd=parseWD(WEEK_DATES[wi]);if(wd){var mm=String(wd.getMonth()+1).padStart(2,'0');var dd=String(wd.getDate()).padStart(2,'0');sub.targetDate=wd.getFullYear()+'-'+mm+'-'+dd;}save();renderDashInd();renderAllRocks();return;}
+            if(isDone&&doneIdx===wi){sub.doneDate='';sub.status='On Track';}
+            else{var wd=parseWD(WEEK_DATES[wi]);if(wd){var mm=String(wd.getMonth()+1).padStart(2,'0');var dd=String(wd.getDate()).padStart(2,'0');sub.doneDate=wd.getFullYear()+'-'+mm+'-'+dd;}sub.status='Done';}
+            save();renderDashInd();renderAllRocks();
+          });
+          dot.addEventListener('contextmenu',function(e){
+            e.preventDefault();var wd=parseWD(WEEK_DATES[wi]);if(wd){var mm=String(wd.getMonth()+1).padStart(2,'0');var dd=String(wd.getDate()).padStart(2,'0');sub.targetDate=wd.getFullYear()+'-'+mm+'-'+dd;}
+            save();renderDashInd();renderAllRocks();
+          });
+          td.appendChild(dot); tr.appendChild(td);
         });
-        dot.addEventListener('contextmenu',function(e){
-          e.preventDefault();
-          var wd=parseWD(WEEK_DATES[wi]);if(wd){var mm=String(wd.getMonth()+1).padStart(2,'0');var dd=String(wd.getDate()).padStart(2,'0');sub.targetDate=wd.getFullYear()+'-'+mm+'-'+dd;}
-          save(); renderDashInd(); renderAllRocks();
-        });
-        td.appendChild(dot); tr.appendChild(td);
-      });
+      }
 
       // Delete
-      var tdDel=document.createElement('td'); tdDel.style.cssText='text-align:center;vertical-align:middle;';
+      var tdDel=document.createElement('td'); tdDel.style.cssText='text-align:center;vertical-align:middle;'+borderTopStyle();
       var delBtn=document.createElement('button'); delBtn.className='btn-del'; delBtn.innerHTML='&#10005;';
       delBtn.addEventListener('click',function(){
         confirmDelete('Delete Sub-Rock?','This will permanently delete "'+sub.title+'". This cannot be undone.',function(){
@@ -2001,33 +2048,11 @@ function buildPersonMilestoneView(name, items) {
       tdDel.appendChild(delBtn); tr.appendChild(tdDel);
       tbody.appendChild(tr);
     });
-
-    // Add sub-rock row
-    var addRow=document.createElement('tr');
-    var tdAdd=document.createElement('td'); tdAdd.colSpan=5+WEEK_DATES.length;
-    tdAdd.style.cssText='padding:8px 10px;border-top:1px solid var(--bdr);';
-    var addWrap=document.createElement('div'); addWrap.style.cssText='display:flex;gap:8px;align-items:center;';
-    var tInp=document.createElement('input'); tInp.type='text'; tInp.placeholder='New sub-rock title';
-    tInp.style.cssText='flex:1;font-size:12px;padding:5px 8px;border:1px solid var(--bdr);border-radius:var(--r);background:var(--surf);color:var(--tx);font-family:var(--font);';
-    var addBtn=document.createElement('button'); addBtn.className='btn btn-ghost'; addBtn.style.fontSize='12px'; addBtn.textContent='+ Add';
-    addBtn.addEventListener('click',function(){
-      if(!tInp.value.trim()) return;
-      var rock2=findRock(type,rock.id); if(!rock2) return;
-      rock2.subrocks.push({id:uid(),title:tInp.value.trim(),kr:'',owner:name,dept:'',portco:'',score:'',targetDate:'',doneDate:'',status:'Not Started',milestones:Array(12).fill(''),msNotes:Array(12).fill('')});
-      tInp.value='';
-      save(); renderDashInd(); renderAllRocks();
-    });
-    addWrap.appendChild(tInp); addWrap.appendChild(addBtn);
-    tdAdd.appendChild(addWrap); addRow.appendChild(tdAdd);
-    tbody.appendChild(addRow);
-
-    tbl.appendChild(tbody); tableWrap.appendChild(tbl); bodyWrap.appendChild(tableWrap);
   });
 
-  wrap.appendChild(bodyWrap);
+  tbl.appendChild(tbody); tableWrap.appendChild(tbl); wrap.appendChild(tableWrap);
   return wrap;
 }
-
 function renderBetter() {
   var cb=document.getElementById('better-count');
   if(cb){ var impl=D.better.filter(function(b){return b.status==='Implemented';}).length; var inp=D.better.filter(function(b){return b.status==='In Progress';}).length; var sug=D.better.filter(function(b){return b.status==='Suggested';}).length; cb.innerHTML='<strong>'+impl+'</strong> implemented · <strong>'+inp+'</strong> in progress · <strong>'+sug+'</strong> suggested'; }
