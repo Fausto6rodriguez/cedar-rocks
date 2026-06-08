@@ -179,18 +179,10 @@ textarea.fc{resize:vertical;min-height:54px}
   </div>
   <div class="sb-nav">
     <div class="nav-sec">Metrics</div>
-    <div class="nav-item active" data-tab="northstar" onclick="switchTab('northstar',this)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17.75l-6.172 3.245 1.179-6.873-5-4.867 6.9-1 3.086-6.253 3.086 6.253 6.9 1-5 4.867 1.179 6.873z"/></svg> North Star</div>
+    <div class="nav-item" data-tab="northstar" onclick="switchTab('northstar',this)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17.75l-6.172 3.245 1.179-6.873-5-4.867 6.9-1 3.086-6.253 3.086 6.253 6.9 1-5 4.867 1.179 6.873z"/></svg> North Star</div>
 
     <div class="nav-sec">Rocks</div>
-    <div class="nav-item" data-tab="allrocks" onclick="switchTab('allrocks',this)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg> All Rocks</div>
-
-    <div class="nav-item" data-tab="ck" onclick="switchTab('ck',this)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg> Country Kitchens</div>
-
-    <div class="nav-item" data-tab="nuzzie" onclick="switchTab('nuzzie',this)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg> Nuzzie</div>
-
-    <div class="nav-item" data-tab="jabaloo" onclick="switchTab('jabaloo',this)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> Jabaloo</div>
-
-    <div class="nav-item" data-tab="cedar" onclick="switchTab('cedar',this)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg> Cedar Brands</div>
+    <div class="nav-item active" data-tab="allrocks" onclick="switchTab('allrocks',this)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg> All Rocks</div>
 
     <div class="nav-sec">Dashboards</div>
     <div class="nav-item" data-tab="dash-ind" onclick="switchTab('dash-ind',this)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0"/><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg> By Individual</div>
@@ -215,8 +207,8 @@ textarea.fc{resize:vertical;min-height:54px}
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
       <div style="min-width:0">
-        <div class="pg-title" id="pg-title">North Star Metrics</div>
-        <div class="pg-sub" id="pg-sub">Leading and lagging indicators — tracked weekly</div>
+        <div class="pg-title" id="pg-title">All Rocks</div>
+        <div class="pg-sub" id="pg-sub">Every rock across all brands & corporate</div>
       </div>
     </div>
     <div style="display:flex;align-items:center;gap:12px;flex-shrink:0"><span id="sync-status" style="font-size:11px;transition:color .3s"></span><div id="topbar-act" style="display:flex;gap:8px">
@@ -225,44 +217,18 @@ textarea.fc{resize:vertical;min-height:54px}
   </div></div>
   <div class="content">
 
-    <div id="panel-northstar" class="panel active">
+    <div id="panel-northstar" class="panel">
       <div class="ns-wrap"><table class="ns-table" id="ns-table"></table></div>
       <div id="ns-note" style="font-size:11px;color:var(--tx3);margin-top:10px;padding-top:8px;border-top:1px solid var(--bdr)"></div>
     </div>
 
-    <div id="panel-allrocks" class="panel">
+    <div id="panel-allrocks" class="panel active">
       <div class="stat-row" id="ar-stats"></div>
+      <div id="ar-add-wrap" style="display:none"></div>
       <div id="ar-content"></div>
     </div>
 
-    
-    <div id="panel-ck" class="panel">
-      <div class="stat-row" id="ck-stats"></div>
-      <div class="sec-bar"><span class="sec-title">Country Kitchens Rocks</span><button class="btn btn-ghost" onclick="showAddRock('ck')">+ Add Rock</button></div>
-      <div id="ck-add" style="display:none"></div>
-      <div id="ck-list"></div>
-    </div>
-    
-    <div id="panel-nuzzie" class="panel">
-      <div class="stat-row" id="nuzzie-stats"></div>
-      <div class="sec-bar"><span class="sec-title">Nuzzie Rocks</span><button class="btn btn-ghost" onclick="showAddRock('nuzzie')">+ Add Rock</button></div>
-      <div id="nuzzie-add" style="display:none"></div>
-      <div id="nuzzie-list"></div>
-    </div>
-    
-    <div id="panel-jabaloo" class="panel">
-      <div class="stat-row" id="jabaloo-stats"></div>
-      <div class="sec-bar"><span class="sec-title">Jabaloo Rocks</span><button class="btn btn-ghost" onclick="showAddRock('jabaloo')">+ Add Rock</button></div>
-      <div id="jabaloo-add" style="display:none"></div>
-      <div id="jabaloo-list"></div>
-    </div>
-    
-    <div id="panel-cedar" class="panel">
-      <div class="stat-row" id="cedar-stats"></div>
-      <div class="sec-bar"><span class="sec-title">Cedar Brands Rocks</span><button class="btn btn-ghost" onclick="showAddRock('cedar')">+ Add Rock</button></div>
-      <div id="cedar-add" style="display:none"></div>
-      <div id="cedar-list"></div>
-    </div>
+
 
     <div id="panel-dash-ind" class="panel">
       <div class="filter-bar"><span style="font-size:12px;color:var(--tx2)">Filter:</span><select id="filt-person" onchange="renderDashInd()"><option value="">All individuals</option></select></div>
@@ -596,11 +562,11 @@ function switchTab(tab, el) {
   act.innerHTML = '';
   if (tab==='northstar') {
     act.innerHTML = '<button class="btn btn-ghost" onclick="addNSRow()">+ Add metric</button>';
-  } else if (ROCK_TYPES.indexOf(tab)>=0) {
+  } else if (tab==='allrocks') {
     var btn = document.createElement('button');
     btn.className = 'btn btn-ghost';
     btn.textContent = '+ Add Rock';
-    btn.onclick = function(){ showAddRock(tab); };
+    btn.onclick = function(){ showAddRockAR(); };
     act.appendChild(btn);
   }
   renderTab(tab);
@@ -609,7 +575,6 @@ function switchTab(tab, el) {
 function renderTab(tab) {
   if (tab==='northstar')             renderNS();
   else if (tab==='allrocks')         renderAllRocks();
-  else if (ROCK_TYPES.indexOf(tab)>=0) renderRocks(tab);
   else if (tab==='dash-ind')         renderDashInd();
   else if (tab==='dash-portco')      renderDashPortco();
   else if (tab==='better')           renderBetter();
@@ -1295,7 +1260,7 @@ function buildMilestonesTab(container,type,rock) {
 
 function toggleRock(type,id){ D.expanded[id]=!D.expanded[id]; save(); reRender(type); }
 function setSRTab(type,id,tab){ D.srTab[id]=tab; save(); reRender(type); }
-function reRender(type){ renderRocks(type); renderAllRocks(); }
+function reRender(type){ renderAllRocks(); }
 
 // ── Add Rock form ──────────────────────────────────────────────────────────
 function showAddRock(type) {
@@ -1322,102 +1287,168 @@ function showAddRock(type) {
   el.appendChild(wrap); el.style.display='block';
 }
 
+// ── Add Rock (All Rocks panel) ─────────────────────────────────────────────
+function showAddRockAR() {
+  var el = document.getElementById('ar-add-wrap');
+  if (!el) return;
+  if (el.style.display !== 'none') { el.style.display = 'none'; return; }
+  el.innerHTML = '';
+  var wrap = document.createElement('div'); wrap.className = 'add-form-wrap';
+  var fr = document.createElement('div'); fr.className = 'fr'; fr.style.cssText = 'gap:10px;margin-bottom:10px';
+  function fg(label, inp) { var g = document.createElement('div'); g.className = 'fg'; var l = document.createElement('label'); l.className = 'fl'; l.textContent = label; g.appendChild(l); g.appendChild(inp); return g; }
+  var tInp = document.createElement('input'); tInp.className = 'fc'; tInp.style.fontSize = '12px'; tInp.placeholder = 'e.g. Scale revenue this quarter';
+  var oInp = document.createElement('input'); oInp.className = 'fc'; oInp.style.cssText = 'font-size:12px;width:150px'; oInp.placeholder = 'Owner';
+  var bSel = document.createElement('select'); bSel.className = 'fc'; bSel.style.cssText = 'font-size:12px;width:160px';
+  ROCK_TYPES.forEach(function(t) { var o = document.createElement('option'); o.value = t; o.textContent = ROCK_LABELS[t].replace(' Rocks',''); bSel.appendChild(o); });
+  var tf = fg('Rock title', tInp); tf.style.flex = '1';
+  fr.appendChild(tf);
+  fr.appendChild(fg('Owner', oInp));
+  fr.appendChild(fg('Brand', bSel));
+  var actions = document.createElement('div'); actions.className = 'form-actions';
+  var cancelBtn = document.createElement('button'); cancelBtn.className = 'btn btn-ghost'; cancelBtn.textContent = 'Cancel';
+  cancelBtn.onclick = function() { el.style.display = 'none'; };
+  var addBtn = document.createElement('button'); addBtn.className = 'btn btn-primary'; addBtn.textContent = 'Add Rock';
+  addBtn.addEventListener('click', function() {
+    if (!tInp.value.trim()) return;
+    getRocks(bSel.value).push({ id: uid(), title: tInp.value.trim(), dim: '', owner: oInp.value.trim(), dept: '', subrocks: [] });
+    save(); el.style.display = 'none'; renderAllRocks(); renderDashInd();
+  });
+  actions.appendChild(cancelBtn); actions.appendChild(addBtn);
+  wrap.appendChild(fr); wrap.appendChild(actions);
+  el.appendChild(wrap); el.style.display = 'block';
+}
+
 // ── All Rocks ──────────────────────────────────────────────────────────────
 function renderAllRocks() {
-  var el=document.getElementById('ar-content'); var statsEl=document.getElementById('ar-stats');
-  if(!el) return;
-  var allRocks=[]; ROCK_TYPES.forEach(function(t){allRocks=allRocks.concat(getRocks(t));});
-  var total=allRocks.reduce(function(a,r){return a+r.subrocks.length;},0);
-  var ot=0,ar2=0,dn=0;
-  allRocks.forEach(function(r){r.subrocks.forEach(function(s){ if(s.status==='On Track')ot++; else if(s.status==='At Risk')ar2++; else if(s.status==='Done')dn++; });});
-  var ns2=0,up2=0;
-  allRocks.forEach(function(r){
-    if(!r.subrocks.length){ up2++; return; }
-    r.subrocks.forEach(function(s){ if(s.status==='Not Started'||(!s.status))ns2++; if(!s.targetDate)up2++; });
-  });
-  if(statsEl) statsEl.innerHTML=
-    '<div class="stat-card"><div class="stat-lbl">Unplanned</div><div class="stat-val" style="color:var(--amber)">'+up2+'</div></div>'+
-    '<div class="stat-card"><div class="stat-lbl">Not Started</div><div class="stat-val" style="color:var(--tx2)">'+ns2+'</div></div>'+
-    '<div class="stat-card"><div class="stat-lbl">On Track</div><div class="stat-val g">'+ot+'</div></div>'+
-    '<div class="stat-card"><div class="stat-lbl">At Risk</div><div class="stat-val a">'+ar2+'</div></div>'+
-    '<div class="stat-card"><div class="stat-lbl">Done</div><div class="stat-val b">'+dn+'</div></div>';
-  if(!allRocks.length){ el.innerHTML='<div class="empty">No rocks yet</div>'; return; }
+  var el = document.getElementById('ar-content');
+  var statsEl = document.getElementById('ar-stats');
+  if (!el) return;
 
-  el.innerHTML='';
-  ROCK_TYPES.forEach(function(type){
-    var rocks=getRocks(type); if(!rocks.length) return;
-    var sorted=sortByScore(rocks);
-    var isCollapsed=D.arCollapsed&&D.arCollapsed[type];
+  var allRocks = []; ROCK_TYPES.forEach(function(t) { allRocks = allRocks.concat(getRocks(t)); });
 
-    // Section header
-    var secHdr=document.createElement('div');
-    secHdr.style.cssText='display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--surf2);border:1px solid var(--bdr);border-radius:var(--r);margin-bottom:6px;cursor:pointer;user-select:none;';
-    secHdr.addEventListener('click',function(){
-      if(!D.arCollapsed) D.arCollapsed={};
-      D.arCollapsed[type]=!D.arCollapsed[type];
-      save(); renderAllRocks();
+  // Aggregate stats across all brands
+  var ot=0,ar2=0,dn=0,ns2=0,up2=0;
+  allRocks.forEach(function(r) {
+    if (!r.subrocks.length) { up2++; return; }
+    r.subrocks.forEach(function(s) {
+      if (!s.targetDate) up2++;
+      if (s.status==='On Track') ot++;
+      else if (s.status==='At Risk') ar2++;
+      else if (s.status==='Done') dn++;
+      else if (s.targetDate) ns2++;
     });
+  });
 
-    var chevSvg=document.createElement('span');
-    chevSvg.innerHTML='<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transition:transform .2s;transform:rotate('+(isCollapsed?'-90deg':'0deg')+')"><polyline points="6 9 12 15 18 9"/></svg>';
-    chevSvg.style.cssText='display:flex;align-items:center;color:var(--tx3);flex-shrink:0;';
+  var af = D.activeFilter && D.activeFilter['allrocks'];
 
-    var labelEl=document.createElement('span');
-    labelEl.style.cssText='font-size:12px;font-weight:500;color:var(--tx);flex:1;';
-    labelEl.textContent=ROCK_LABELS[type]+' ['+rocks.length+']';
+  if (statsEl) {
+    statsEl.innerHTML = '';
+    var cards = [
+      {label:'Unplanned', val:up2, color:'var(--amber)', filter:'Unplanned'},
+      {label:'Not Started', val:ns2, color:'var(--tx2)', filter:'Not Started'},
+      {label:'On Track', val:ot, color:'var(--green)', filter:'On Track'},
+      {label:'At Risk', val:ar2, color:'var(--amber)', filter:'At Risk'},
+      {label:'Done', val:dn, color:'var(--blue)', filter:'Done'}
+    ];
+    cards.forEach(function(c) {
+      var isActive = af === c.filter;
+      var div = document.createElement('div'); div.className = 'stat-card';
+      div.style.cssText = 'cursor:pointer;transition:box-shadow .15s,background .15s;' + (isActive ? 'box-shadow:0 0 0 2px '+c.color+';background:rgba(24,95,165,0.06);' : '');
+      div.innerHTML = '<div class="stat-lbl">'+c.label+'</div><div class="stat-val" style="color:'+c.color+'">'+c.val+'</div>' + (isActive ? '<div style="font-size:9px;color:'+c.color+';margin-top:2px;text-transform:uppercase;letter-spacing:.05em;font-weight:500">Active</div>' : '');
+      div.addEventListener('click', function() { toggleFilter('allrocks', c.filter); });
+      statsEl.appendChild(div);
+    });
+  }
 
-    // Mini stats for this pod
+  el.innerHTML = '';
+
+  ROCK_TYPES.forEach(function(type) {
+    var rocks = getRocks(type);
+    var isCollapsed = D.arCollapsed && D.arCollapsed[type];
+
+    // Section header with collapse toggle and per-brand add button
+    var secHdr = document.createElement('div');
+    secHdr.style.cssText = 'display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--surf2);border:1px solid var(--bdr);border-radius:var(--r);margin-bottom:6px;cursor:pointer;user-select:none;';
+
+    var chevSvg = document.createElement('span');
+    chevSvg.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transition:transform .2s;transform:rotate('+(isCollapsed?'-90deg':'0deg')+')"><polyline points="6 9 12 15 18 9"/></svg>';
+    chevSvg.style.cssText = 'display:flex;align-items:center;color:var(--tx3);flex-shrink:0;';
+
+    var labelEl = document.createElement('span');
+    labelEl.style.cssText = 'font-size:12px;font-weight:500;color:var(--tx);flex:1;';
+    labelEl.textContent = ROCK_LABELS[type] + ' [' + rocks.length + ']';
+
+    // Mini stats
     var podOt=0,podAr=0,podDn=0,podUp=0;
-    rocks.forEach(function(r){
-      if(!r.subrocks.length){podUp++;return;}
-      r.subrocks.forEach(function(s){
-        if(s.status==='On Track')podOt++;
-        else if(s.status==='At Risk')podAr++;
-        else if(s.status==='Done')podDn++;
-        if(!s.targetDate)podUp++;
+    rocks.forEach(function(r) {
+      if (!r.subrocks.length) { podUp++; return; }
+      r.subrocks.forEach(function(s) {
+        if (s.status==='On Track') podOt++;
+        else if (s.status==='At Risk') podAr++;
+        else if (s.status==='Done') podDn++;
+        if (!s.targetDate) podUp++;
       });
     });
-    var miniStats=document.createElement('span');
-    miniStats.style.cssText='display:flex;gap:8px;font-size:11px;';
-    miniStats.innerHTML=
-      (podUp?'<span style="color:var(--amber)">'+podUp+' unplanned</span>':'')+
-      (podOt?'<span style="color:var(--green)">'+podOt+' on track</span>':'')+
-      (podAr?'<span style="color:var(--red)">'+podAr+' at risk</span>':'')+
-      (podDn?'<span style="color:var(--blue)">'+podDn+' done</span>':'');
+    var miniStats = document.createElement('span');
+    miniStats.style.cssText = 'display:flex;gap:8px;font-size:11px;';
+    miniStats.innerHTML =
+      (podUp ? '<span style="color:var(--amber)">'+podUp+' unplanned</span>' : '') +
+      (podOt ? '<span style="color:var(--green)">'+podOt+' on track</span>' : '') +
+      (podAr ? '<span style="color:var(--red)">'+podAr+' at risk</span>' : '') +
+      (podDn ? '<span style="color:var(--blue)">'+podDn+' done</span>' : '');
+
+    // Per-brand add button (stops propagation so it doesn't toggle collapse)
+    var addBrandBtn = document.createElement('button');
+    addBrandBtn.className = 'btn btn-ghost';
+    addBrandBtn.style.cssText = 'font-size:11px;padding:3px 9px;margin-left:6px;flex-shrink:0;';
+    addBrandBtn.textContent = '+ Add Rock';
+    addBrandBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      showAddRock(type);
+    });
+
+    secHdr.addEventListener('click', function() {
+      if (!D.arCollapsed) D.arCollapsed = {};
+      D.arCollapsed[type] = !D.arCollapsed[type];
+      save(); renderAllRocks();
+    });
 
     secHdr.appendChild(chevSvg);
     secHdr.appendChild(labelEl);
     secHdr.appendChild(miniStats);
+    secHdr.appendChild(addBrandBtn);
     el.appendChild(secHdr);
 
-    if(!isCollapsed){
-      var rocksWrap=document.createElement('div');
-      rocksWrap.style.cssText='margin-bottom:12px;';
-      sorted.forEach(function(rock){
-        var score=avgScore(rock);
-        var ts;
-      if(!rock.subrocks.length){ ts='Unplanned'; }
-      else {
-        var _st=rock.subrocks.map(function(s){return s.status||'Not Started';});
-        var _allDone=_st.every(function(s){return s==='Done';});
-        var _hasAR=_st.indexOf('At Risk')>=0;
-        var _hasOT=_st.indexOf('On Track')>=0;
-        var _hasDone=_st.indexOf('Done')>=0;
-        if(_allDone) ts='Done';
-        else if(_hasAR) ts='At Risk';
-        else if(_hasOT||_hasDone) ts='On Track';
-        else ts='Not Started';
+    // Inline add form container for this brand
+    var addDiv = document.createElement('div');
+    addDiv.id = type + '-add';
+    addDiv.style.display = 'none';
+    el.appendChild(addDiv);
+
+    if (!isCollapsed) {
+      var rocksWrap = document.createElement('div');
+      rocksWrap.style.cssText = 'margin-bottom:12px;';
+
+      if (!rocks.length) {
+        var emptyDiv = document.createElement('div');
+        emptyDiv.className = 'empty';
+        emptyDiv.style.cssText = 'padding:16px;font-size:12px;border:1px dashed var(--bdr);border-radius:var(--r);margin-bottom:6px;';
+        emptyDiv.textContent = 'No rocks yet — add one above';
+        rocksWrap.appendChild(emptyDiv);
+      } else {
+        // Apply active filter
+        var filteredRocks = sortByScore(rocks).filter(function(rock) {
+          if (!af) return true;
+          if (af==='Unplanned') return !rock.subrocks.length || rock.subrocks.some(function(s){ return !s.targetDate; });
+          return rock.subrocks.some(function(s) {
+            if (af==='Not Started') return s.targetDate && (s.status==='Not Started'||!s.status);
+            return s.status === af;
+          });
+        });
+        filteredRocks.forEach(function(rock, ri) {
+          rocksWrap.appendChild(buildRockCard(type, rock, ri));
+        });
       }
-        var c=document.createElement('div'); c.className='rock-card'; c.style.marginBottom='6px';
-        c.innerHTML='<div class="rock-hdr"'+((!rock.subrocks.length)?' style="background:rgba(163,45,45,0.06)"':'')+'>'+
-          '<div class="rock-info">'+
-            '<div class="rock-title">'+esc(rock.title)+'</div>'+
-            '<div class="rock-meta">'+(rock.owner?'<span>'+esc(rock.owner)+'</span>':'')+'<span>'+rock.subrocks.length+' sub-rocks</span></div>'+
-          '</div>'+
-          '<div class="rock-right">'+(score!==null?'<span class="score-chip">'+score.toFixed(2)+'</span>':'')+statusPill(ts)+'</div>'+
-        '</div>';
-        rocksWrap.appendChild(c);
-      });
       el.appendChild(rocksWrap);
     }
   });
@@ -1966,7 +1997,17 @@ function saveSettings(){ D.quarter=document.getElementById('set-q').value.trim()
 function bootApp() {
   if(!D.quarter) D.quarter=currentQ();
   document.getElementById('sb-quarter').textContent=D.quarter;
-  renderNS();
+  // Initialize topbar for allrocks
+  var act = document.getElementById('topbar-act');
+  if (act) {
+    act.innerHTML = '';
+    var btn = document.createElement('button');
+    btn.className = 'btn btn-ghost';
+    btn.textContent = '+ Add Rock';
+    btn.onclick = function(){ showAddRockAR(); };
+    act.appendChild(btn);
+  }
+  renderAllRocks();
 }
 
 
