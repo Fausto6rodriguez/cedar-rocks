@@ -109,7 +109,7 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:var(--fon
 .add-sr-grid{display:grid;grid-template-columns:1fr 110px 110px 110px 110px;gap:6px;flex:1}
 .add-sr-grid input,.add-sr-grid select{font-size:12px;padding:5px 7px;border:1px solid var(--bdr);border-radius:var(--r);background:var(--surf);color:var(--tx);font-family:var(--font)}.add-sr-grid input:focus,.add-sr-grid select:focus{border-color:var(--blue);outline:none}
 .grade-note{font-size:11px;color:var(--tx3);margin-top:8px;padding-top:8px;border-top:1px solid var(--bdr)}
-.ms-wrap{overflow-x:auto}
+.sr-body [contenteditable][data-placeholder]:empty:before{content:attr(data-placeholder);color:var(--tx3);pointer-events:none;}
 .ms-table{width:100%;border-collapse:collapse;font-size:12px;min-width:800px}
 .ms-table th{font-size:10px;color:var(--tx3);text-transform:uppercase;letter-spacing:.04em;padding:6px 8px;border-bottom:1px solid var(--bdr2);font-weight:500;white-space:nowrap;text-align:left}
 .ms-table td{padding:5px 6px;border-bottom:1px solid var(--bdr);vertical-align:top}.ms-table tbody tr:last-child td{border-bottom:none}
@@ -827,6 +827,8 @@ function renderNS() {
     while(m.weeks.length < WEEK_DATES.length) m.weeks.push('');
   });
 
+  tbl.innerHTML = ''; // clear before rebuild
+
   // Build header
   var thead=document.createElement('thead');
   var hr=document.createElement('tr');
@@ -1138,20 +1140,17 @@ function buildRockCard(type,rock,ri) {
     var tabBar=document.createElement('div');
     tabBar.className='sr-tabs';
     var t1=document.createElement('button'); t1.className='sr-tab'+(tab==='subrocks'?' active':''); t1.textContent='Sub-Rocks';
-    var t2=document.createElement('button'); t2.className='sr-tab'+(tab==='kpis'?' active':''); t2.textContent='KPIs';
-    var t3=document.createElement('button'); t3.className='sr-tab'+(tab==='milestones'?' active':''); t3.textContent='Week-by-Week Milestones';
+    var t2=document.createElement('button'); t2.className='sr-tab'+((tab==='milestones'||tab==='kpis')?' active':''); t2.textContent='Week-by-Week Progress';
     t1.addEventListener('click',function(e){e.stopPropagation();setSRTab(type,rock.id,'subrocks');});
-    t2.addEventListener('click',function(e){e.stopPropagation();setSRTab(type,rock.id,'kpis');});
-    t3.addEventListener('click',function(e){e.stopPropagation();setSRTab(type,rock.id,'milestones');});
-    tabBar.appendChild(t1); tabBar.appendChild(t2); tabBar.appendChild(t3);
+    t2.addEventListener('click',function(e){e.stopPropagation();setSRTab(type,rock.id,'milestones');});
+    tabBar.appendChild(t1); tabBar.appendChild(t2);
     wrap.appendChild(tabBar);
 
     var body=document.createElement('div');
     body.className='sr-body';
     body.id='tab-body-'+rock.id;
     if(tab==='subrocks') buildSubrocksTab(body,type,rock,ri);
-    else if(tab==='milestones') buildMilestonesTab(body,type,rock);
-    else if(tab==='kpis') buildKPIsTab(body,type,rock);
+    else buildMilestonesTab(body,type,rock);
     wrap.appendChild(body);
     card.appendChild(wrap);
   }
@@ -1169,11 +1168,7 @@ function buildSubrocksTab(container,type,rock,ri) {
     var span=document.createElement('span'); span.className='col';
     span.style.cssText='text-align:center;position:relative;cursor:default;';
     span.textContent=label;
-    if(tooltip){
-      span.title=tooltip;
-      span.style.borderBottom='1px dashed var(--bdr2)';
-      span.style.display='inline-block';
-    }
+    if(tooltip) span.title=tooltip;
     return span;
   }
 
@@ -1183,8 +1178,8 @@ function buildSubrocksTab(container,type,rock,ri) {
     hdr.appendChild(document.createElement('span'));
     var subCol=document.createElement('span'); subCol.className='col'; subCol.textContent='Sub-Rock'; hdr.appendChild(subCol);
     var ownerCol=document.createElement('span'); ownerCol.className='col'; ownerCol.textContent='Owner'; hdr.appendChild(ownerCol);
-    var deptCol=document.createElement('span'); deptCol.className='col'; deptCol.textContent='Department'; hdr.appendChild(deptCol);
-    var recCol=document.createElement('span'); recCol.className='col'; recCol.style.textAlign='center'; recCol.textContent='Recurring'; hdr.appendChild(recCol);
+    var deptCol=document.createElement('span'); deptCol.className='col'; deptCol.style.cssText='text-align:center;'; deptCol.textContent='Department'; deptCol.title='Team or department responsible'; hdr.appendChild(deptCol);
+    var recCol=document.createElement('span'); recCol.className='col'; recCol.style.cssText='text-align:center;cursor:default;'; recCol.textContent='Recurring'; recCol.title='Tick if this is an ongoing task with no fixed start or end date — it will not count as unplanned'; hdr.appendChild(recCol);
     hdr.appendChild(makeHdrCell('Target Date','Date one expects the sub-rock to be completed'));
     hdr.appendChild(makeHdrCell('Status','Update completion status weekly'));
     hdr.appendChild(makeHdrCell('Conclusion Date','Date the sub-rock was actually completed'));
@@ -1374,8 +1369,9 @@ function buildMilestonesTab(container,type,rock) {
   var thead=document.createElement('thead');
   var hr=document.createElement('tr');
   var th0=document.createElement('th'); th0.style.cssText='min-width:160px;max-width:180px;position:sticky;left:0;background:var(--surf);word-break:break-word;'; th0.textContent='Sub-Rock'; hr.appendChild(th0);
-  var th1=document.createElement('th'); th1.style.cssText='width:90px'; th1.textContent='Owner'; hr.appendChild(th1);
-  var th2=document.createElement('th'); th2.style.cssText='width:90px'; th2.textContent='Target'; hr.appendChild(th2);
+  var th1=document.createElement('th'); th1.style.cssText='width:80px'; th1.textContent='Owner'; hr.appendChild(th1);
+  var thC=document.createElement('th'); thC.style.cssText='min-width:160px;'; thC.textContent='Comments'; hr.appendChild(thC);
+  var th2=document.createElement('th'); th2.style.cssText='width:100px;text-align:center'; th2.textContent='Target'; hr.appendChild(th2);
 
   WEEK_DATES.forEach(function(w, wi){
     if(!isVisible(wi)) return;
@@ -1417,17 +1413,41 @@ function buildMilestonesTab(container,type,rock) {
 
     // Owner cell
     var tdOwner=document.createElement('td');
-    tdOwner.style.cssText='font-size:11px;color:var(--tx2);word-break:break-word;line-height:1.4;';
+    tdOwner.style.cssText='font-size:11px;color:var(--tx2);word-break:break-word;line-height:1.4;vertical-align:top;';
     tdOwner.textContent=sub.owner||''; tr.appendChild(tdOwner);
 
-    // Target date display
+    // Comments cell — rich text (contentEditable div)
+    var tdComment=document.createElement('td');
+    tdComment.style.cssText='vertical-align:top;min-width:160px;';
+    var commentEl=document.createElement('div');
+    commentEl.contentEditable='true';
+    commentEl.style.cssText='font-size:12px;color:var(--tx);min-height:36px;padding:4px 6px;border:1px solid var(--bdr);border-radius:5px;line-height:1.5;outline:none;background:var(--surf);word-break:break-word;';
+    commentEl.innerHTML=sub.comment||'';
+    commentEl.setAttribute('data-placeholder','Add a comment…');
+    if(!sub.comment) commentEl.style.color='var(--tx3)';
+    commentEl.addEventListener('focus',function(){
+      if(!sub.comment) { this.innerHTML=''; this.style.color='var(--tx)'; }
+    });
+    commentEl.addEventListener('blur',function(){
+      sub.comment=this.innerHTML;
+      if(!sub.comment||sub.comment==='<br>') { sub.comment=''; this.innerHTML=''; this.style.color='var(--tx3)'; }
+      save();
+    });
+    // Prevent tab from leaving
+    commentEl.addEventListener('keydown',function(e){ if(e.key==='Escape') this.blur(); });
+    tdComment.appendChild(commentEl); tr.appendChild(tdComment);
+
+    // Target date — always show input, even if empty
     var tdTarget=document.createElement('td');
-    tdTarget.style.cssText='font-size:11px;color:var(--tx2);text-align:center';
+    tdTarget.style.cssText='font-size:11px;color:var(--tx2);text-align:center;vertical-align:top;';
     if(sub.recurring){
-      tdTarget.innerHTML='<span style="font-size:9px;font-weight:500;color:#5B21B6;background:#EDE9FE;padding:1px 5px;border-radius:8px;text-transform:uppercase;letter-spacing:.04em;">recurring</span>';
-    } else if(sub.targetDate){
-      var tDate=parseISODate(sub.targetDate);
-      tdTarget.textContent=tDate?tDate.toLocaleDateString('en-GB',{day:'2-digit',month:'2-digit'}):'';
+      tdTarget.innerHTML='<span style="font-size:9px;font-weight:500;color:#5B21B6;background:#EDE9FE;padding:2px 6px;border-radius:4px;text-transform:uppercase;letter-spacing:.04em;">recurring</span>';
+    } else {
+      var targetInpMs=document.createElement('input'); targetInpMs.type='date'; targetInpMs.className='ctrl';
+      targetInpMs.style.cssText='font-size:11px;width:100%;';
+      targetInpMs.value=sub.targetDate||'';
+      targetInpMs.addEventListener('change',function(){ sub.targetDate=this.value; save(); reRenderTab(rock.id); });
+      tdTarget.appendChild(targetInpMs);
     }
     tr.appendChild(tdTarget);
 
@@ -2300,53 +2320,50 @@ function buildPersonMilestoneView(name, items) {
       titleEl.addEventListener('blur',function(){ sub.title=this.textContent.trim(); save(); renderAllRocks(); });
       titleEl.addEventListener('keydown',function(e){ if(e.key==='Enter'){e.preventDefault();this.blur();} });
       tdTitle.appendChild(titleEl);
-      if(sub.recurring){
-        var rTag=document.createElement('span'); rTag.textContent='recurring';
-        rTag.style.cssText='font-size:9px;font-weight:600;text-transform:uppercase;color:#332E88;background:#D8D4F8;padding:1px 5px;border-radius:3px;margin-top:2px;display:inline-block;letter-spacing:.04em;';
-        tdTitle.appendChild(rTag);
-      }
       tr.appendChild(tdTitle);
 
       function borderTopStyle(){ return rIdx>0&&isFirstOfRock?'border-top:2px solid var(--bdr2);':''; }
 
-      // Target date
-      var tdTarget=document.createElement('td'); tdTarget.style.cssText='text-align:center;vertical-align:middle;'+borderTopStyle();
-      if(!sub.recurring){
+      if(sub.recurring){
+        // Single spanning cell replacing Target + Conclusion + Status + all week cols + delete
+        var visWkCount = WEEK_DATES.filter(function(_,wi){return isVisibleWk(wi);}).length;
+        var tdSpan=document.createElement('td');
+        tdSpan.colSpan = 3 + visWkCount; // Target + Conclusion + Status + weeks
+        tdSpan.style.cssText='padding:6px 10px;vertical-align:middle;'+borderTopStyle();
+        tdSpan.innerHTML='<div style="background:#E0DCFC;border:1px solid #C4B5FD;border-radius:4px;padding:5px 14px;font-size:11px;font-weight:600;color:#332E88;text-align:center;letter-spacing:.02em;">↻ Recurring Task</div>';
+        tr.appendChild(tdSpan);
+        var tdDelR=document.createElement('td'); tdDelR.style.cssText='text-align:center;vertical-align:middle;'+borderTopStyle();
+        var delBtnR=document.createElement('button'); delBtnR.className='btn-del'; delBtnR.innerHTML='&#10005;';
+        delBtnR.addEventListener('click',function(){
+          confirmDelete('Delete Sub-Rock?','This will permanently delete "'+sub.title+'". This cannot be undone.',function(){
+            var rock2=findRock(type,rock.id);
+            if(rock2){ rock2.subrocks=rock2.subrocks.filter(function(s){return s.id!==sub.id;}); }
+            save(); renderDashInd(); renderAllRocks();
+          });
+        });
+        tdDelR.appendChild(delBtnR); tr.appendChild(tdDelR);
+      } else {
+        // Target date
+        var tdTarget=document.createElement('td'); tdTarget.style.cssText='text-align:center;vertical-align:middle;'+borderTopStyle();
         var targetInp=document.createElement('input'); targetInp.type='date'; targetInp.className='ctrl'; targetInp.style.cssText='font-size:11px;width:100%;min-width:80px;'; targetInp.value=sub.targetDate||'';
         targetInp.addEventListener('change',function(){ sub.targetDate=this.value; save(); renderDashInd(); renderAllRocks(); });
-        tdTarget.appendChild(targetInp);
-      }
-      tr.appendChild(tdTarget);
+        tdTarget.appendChild(targetInp); tr.appendChild(tdTarget);
 
-      // Conclusion date
-      var tdDone=document.createElement('td'); tdDone.style.cssText='text-align:center;vertical-align:middle;'+borderTopStyle();
-      if(!sub.recurring){
+        // Conclusion date
+        var tdDone=document.createElement('td'); tdDone.style.cssText='text-align:center;vertical-align:middle;'+borderTopStyle();
         var doneInp=document.createElement('input'); doneInp.type='date'; doneInp.className='ctrl'; doneInp.style.cssText='font-size:11px;width:100%;min-width:80px;'; doneInp.value=sub.doneDate||'';
         doneInp.addEventListener('change',function(){ sub.doneDate=this.value; if(this.value) sub.status='Done'; save(); renderDashInd(); renderAllRocks(); });
-        tdDone.appendChild(doneInp);
-      }
-      tr.appendChild(tdDone);
+        tdDone.appendChild(doneInp); tr.appendChild(tdDone);
 
-      // Status
-      var tdStatus=document.createElement('td'); tdStatus.style.cssText='vertical-align:middle;'+borderTopStyle();
-      if(sub.recurring){
-        tdStatus.innerHTML='<span style="font-size:10px;font-weight:600;color:#332E88;background:#D8D4F8;padding:2px 7px;border-radius:3px;text-transform:uppercase;letter-spacing:.04em;">Recurring</span>';
-      } else {
+        // Status
+        var tdStatus=document.createElement('td'); tdStatus.style.cssText='vertical-align:middle;'+borderTopStyle();
         var stSel=document.createElement('select'); stSel.className='ctrl'; stSel.style.cssText='font-size:11px;width:100%;';
         if(!sub.targetDate){ var upOpt=document.createElement('option'); upOpt.value='Unplanned'; upOpt.textContent='Unplanned'; upOpt.selected=true; stSel.appendChild(upOpt); }
         STATUSES.forEach(function(s){ var o=document.createElement('option'); o.textContent=s; if(sub.targetDate&&sub.status===s) o.selected=true; stSel.appendChild(o); });
         stSel.addEventListener('change',function(){ sub.status=this.value==='Unplanned'?'Not Started':this.value; save(); renderDashInd(); renderAllRocks(); });
-        tdStatus.appendChild(stSel);
-      }
-      tr.appendChild(tdStatus);
+        tdStatus.appendChild(stSel); tr.appendChild(tdStatus);
 
-      // Week dots — visible weeks only
-      if(sub.recurring){
-        var tdRec=document.createElement('td'); tdRec.colSpan=WEEK_DATES.filter(function(_,wi){return isVisibleWk(wi);}).length;
-        tdRec.style.cssText='padding:6px 10px;vertical-align:middle;'+borderTopStyle();
-        tdRec.innerHTML='<div style="background:#E0DCFC;border:1px solid #C4B5FD;border-radius:4px;padding:4px 10px;font-size:11px;font-weight:600;color:#332E88;text-align:center;">↻ Recurring Task</div>';
-        tr.appendChild(tdRec);
-      } else {
+        // Week dots
         WEEK_DATES.forEach(function(w,wi){
           if(!isVisibleWk(wi)) return;
           var td=document.createElement('td'); var isCurr=wi===currentWeekIdx;
@@ -2373,19 +2390,19 @@ function buildPersonMilestoneView(name, items) {
           });
           td.appendChild(dot); tr.appendChild(td);
         });
-      }
 
-      // Delete
-      var tdDel=document.createElement('td'); tdDel.style.cssText='text-align:center;vertical-align:middle;'+borderTopStyle();
-      var delBtn=document.createElement('button'); delBtn.className='btn-del'; delBtn.innerHTML='&#10005;';
-      delBtn.addEventListener('click',function(){
-        confirmDelete('Delete Sub-Rock?','This will permanently delete "'+sub.title+'". This cannot be undone.',function(){
-          var rock2=findRock(type,rock.id);
-          if(rock2){ rock2.subrocks=rock2.subrocks.filter(function(s){return s.id!==sub.id;}); }
-          save(); renderDashInd(); renderAllRocks();
+        // Delete
+        var tdDel=document.createElement('td'); tdDel.style.cssText='text-align:center;vertical-align:middle;'+borderTopStyle();
+        var delBtn=document.createElement('button'); delBtn.className='btn-del'; delBtn.innerHTML='&#10005;';
+        delBtn.addEventListener('click',function(){
+          confirmDelete('Delete Sub-Rock?','This will permanently delete "'+sub.title+'". This cannot be undone.',function(){
+            var rock2=findRock(type,rock.id);
+            if(rock2){ rock2.subrocks=rock2.subrocks.filter(function(s){return s.id!==sub.id;}); }
+            save(); renderDashInd(); renderAllRocks();
+          });
         });
-      });
-      tdDel.appendChild(delBtn); tr.appendChild(tdDel);
+        tdDel.appendChild(delBtn); tr.appendChild(tdDel);
+      }
       tbody.appendChild(tr);
     });
   });
@@ -2467,7 +2484,8 @@ function saveSettings(){ D.quarter=document.getElementById('set-q').value.trim()
 // ── Boot ───────────────────────────────────────────────────────────────────
 function bootApp() {
   if(!D.quarter) D.quarter=currentQ();
-  document.getElementById('sb-quarter').textContent=D.quarter;
+  if(!D.quarter || D.quarter === 'Q2 2026') D.quarter = 'Q3 2026';
+  document.getElementById('sb-quarter').textContent = D.quarter;
   // Initialize topbar for allrocks
   var act = document.getElementById('topbar-act');
   if (act) {
