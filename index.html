@@ -412,7 +412,7 @@ var DIMS = ['Revenue & Growth','Customer Success','Product & Innovation','Team &
 var DEPARTMENTS = ['All Departments','Marketing','Sales','Technology','Fin & Ops','Office of CEO'];
 var STATUSES = ['Not Started','On Track','At Risk','Done'];
 var MS_OPTS = ['--','Planned','Done','At Risk'];
-var WEEK_DATES = ['07.03','07.10','07.17','07.24','07.31','08.07','08.14','08.21','08.28','09.04','09.11','09.18'];
+var WEEK_DATES = ['03.16','03.23','03.30','04.06','04.13','04.20','04.27','05.04','05.11','05.18','05.25','06.01','06.08','06.15','06.22','06.29','07.06','07.13','07.20','07.27','08.03','08.10','08.17','08.24','08.31','09.07','09.14','09.21','09.28'];
 var PAGE_META = {
   northstar:  {title:'North Star Metrics',        sub:'Leading and lagging indicators — tracked weekly'},
   allrocks:   {title:'All Rocks',                 sub:'Every rock across all brands & corporate'},
@@ -555,6 +555,20 @@ function applyData(s) {
   // Unified rocks — migrate from old brand arrays if needed
   if (s.rocks) {
     D.rocks = s.rocks;
+    // Pad milestones/KPI weeks to match WEEK_DATES length
+    D.rocks.forEach(function(r){
+      if(r.subrocks) r.subrocks.forEach(function(sub){
+        if(!sub.milestones) sub.milestones=[];
+        while(sub.milestones.length < WEEK_DATES.length) sub.milestones.push('');
+        if(!sub.msNotes) sub.msNotes=[];
+        while(sub.msNotes.length < WEEK_DATES.length) sub.msNotes.push('');
+        if(!sub.kpis) sub.kpis=[];
+        sub.kpis.forEach(function(kpi){
+          if(!kpi.weeks) kpi.weeks=[];
+          while(kpi.weeks.length < WEEK_DATES.length) kpi.weeks.push('');
+        });
+      });
+    });
   } else {
     // Migrate from old per-brand arrays
     var migrated = [];
@@ -805,10 +819,13 @@ function renderNS() {
   var today=new Date(); today.setHours(0,0,0,0);
   function parseWD(str){ if(!str) return null; var p=str.split('.'); if(p.length!==2) return null; return new Date(2026,parseInt(p[0],10)-1,parseInt(p[1],10)); }
   var currentWeekIdx=-1;
-  for(var ci=0;ci<WEEK_DATES.length;ci++){ var wd=parseWD(WEEK_DATES[ci]); if(wd&&today<=wd){ currentWeekIdx=ci; break; } }
+  for(var ci=WEEK_DATES.length-1;ci>=0;ci--){ var wd=parseWD(WEEK_DATES[ci]); if(wd&&wd<=today){ currentWeekIdx=ci; break; } }
   if(currentWeekIdx===-1) currentWeekIdx=WEEK_DATES.length-1;
 
-  tbl.innerHTML='';
+  // Pad weeks arrays to match WEEK_DATES length
+  D.ns.forEach(function(m){
+    while(m.weeks.length < WEEK_DATES.length) m.weeks.push('');
+  });
 
   // Build header
   var thead=document.createElement('thead');
@@ -1255,7 +1272,7 @@ function buildSubrocksTab(container,type,rock,ri) {
   var addBtn=document.createElement('button'); addBtn.className='btn btn-ghost'; addBtn.style.cssText='white-space:nowrap;flex-shrink:0;font-size:11px'; addBtn.textContent='+ Add';
   addBtn.addEventListener('click',function(){
     if(!tInp.value.trim()) return;
-    rock.subrocks.push({id:uid(),title:tInp.value.trim(),kr:'',owner:oInp.value.trim(),dept:'',score:'',targetDate:'',doneDate:'',recurring:false,status:sSel.value,milestones:Array(12).fill(''),msNotes:Array(12).fill(''),kpis:[]});
+    rock.subrocks.push({id:uid(),title:tInp.value.trim(),kr:'',owner:oInp.value.trim(),dept:'',score:'',targetDate:'',doneDate:'',recurring:false,status:sSel.value,milestones:Array(WEEK_DATES.length).fill(''),msNotes:Array(WEEK_DATES.length).fill(''),kpis:[]});
     D.expanded[rock.id]=true; D.srTab[rock.id]='subrocks';
     save(); reRender(); renderDashInd();
   });
@@ -1298,11 +1315,11 @@ function buildMilestonesTab(container,type,rock) {
 
   var today=new Date(); today.setHours(0,0,0,0);
   var currentWeekIdx=-1;
-  for(var ci=0;ci<WEEK_DATES.length;ci++){
+  for(var ci=WEEK_DATES.length-1;ci>=0;ci--){
     var wd=parseWeekDate(WEEK_DATES[ci]);
-    if(wd && today<=wd){ currentWeekIdx=ci; break; }
+    if(wd && wd<=today){ currentWeekIdx=ci; break; }
   }
-  if(currentWeekIdx===-1) currentWeekIdx=WEEK_DATES.length-1;
+  if(currentWeekIdx===-1) currentWeekIdx=0;
 
   var prevIdx    = currentWeekIdx > 0 ? currentWeekIdx - 1 : -1;
   var nextIdx    = currentWeekIdx < WEEK_DATES.length-1 ? currentWeekIdx + 1 : -1;
@@ -1361,8 +1378,8 @@ function buildMilestonesTab(container,type,rock) {
   var tbody=document.createElement('tbody');
 
   rock.subrocks.forEach(function(sub){
-    if(!sub.milestones||sub.milestones.length!==12) sub.milestones=Array(12).fill('');
-    if(!sub.msNotes||sub.msNotes.length!==12) sub.msNotes=Array(12).fill('');
+    if(!sub.milestones||sub.milestones.length!==WEEK_DATES.length) sub.milestones=Array(12).fill('');
+    if(!sub.msNotes||sub.msNotes.length!==WEEK_DATES.length) sub.msNotes=Array(12).fill('');
 
     var tr=document.createElement('tr');
 
@@ -1501,7 +1518,7 @@ function buildKPIsTab(container, type, rock) {
   function parseWD(str){ if(!str) return null; var p=str.split('.'); if(p.length!==2) return null; return new Date(2026,parseInt(p[0],10)-1,parseInt(p[1],10)); }
   var today=new Date(); today.setHours(0,0,0,0);
   var currentWeekIdx=-1;
-  for(var ci=0;ci<WEEK_DATES.length;ci++){ var wd=parseWD(WEEK_DATES[ci]); if(wd&&today<=wd){ currentWeekIdx=ci; break; } }
+  for(var ci=WEEK_DATES.length-1;ci>=0;ci--){ var wd=parseWD(WEEK_DATES[ci]); if(wd&&wd<=today){ currentWeekIdx=ci; break; } }
   if(currentWeekIdx===-1) currentWeekIdx=WEEK_DATES.length-1;
 
   var prevIdx = Math.max(0, currentWeekIdx-1);
@@ -1583,7 +1600,7 @@ function buildKPIsTab(container, type, rock) {
     }
 
     rock.kpis.forEach(function(kpi,ki){
-      if(!kpi.weeks||kpi.weeks.length!==12) kpi.weeks=Array(12).fill('');
+      if(!kpi.weeks||kpi.weeks.length!==WEEK_DATES.length) kpi.weeks=Array(12).fill('');
       var nums=kpi.weeks.map(function(v){return parseFloat(v)||0;});
       var total=nums.reduce(function(a,b){return a+b;},0);
       var tgt=parseFloat(kpi.target)||0;
@@ -1672,7 +1689,7 @@ function buildKPIsTab(container, type, rock) {
     var addBtn=document.createElement('button'); addBtn.className='btn btn-ghost'; addBtn.style.cssText='font-size:11px;white-space:nowrap;flex-shrink:0;'; addBtn.textContent='+ Add KPI';
     addBtn.addEventListener('click',function(){
       if(!nameInp.value.trim()) return;
-      rock.kpis.push({id:uid(),name:nameInp.value.trim(),target:tgtInp2.value.trim(),type:typeSel2.value,subId:subSel2.value,weeks:Array(12).fill('')});
+      rock.kpis.push({id:uid(),name:nameInp.value.trim(),target:tgtInp2.value.trim(),type:typeSel2.value,subId:subSel2.value,weeks:Array(WEEK_DATES.length).fill('')});
       save(); renderKPITable();
     });
     nameInp.addEventListener('keydown',function(e){ if(e.key==='Enter') addBtn.click(); });
@@ -1977,7 +1994,7 @@ function renderDashPortco() {
           function parseISO(str){ if(!str) return null; var d=new Date(str); return isNaN(d.getTime())?null:d; }
           function dateToWkIdx(d){ if(!d) return -1; for(var i=0;i<WEEK_DATES.length;i++){ var wd=parseWD(WEEK_DATES[i]); if(wd&&d<=wd) return i; } return WEEK_DATES.length-1; }
           var currentWeekIdx=-1;
-          for(var ci=0;ci<WEEK_DATES.length;ci++){ var wd=parseWD(WEEK_DATES[ci]); if(wd&&today<=wd){ currentWeekIdx=ci; break; } }
+          for(var ci=WEEK_DATES.length-1;ci>=0;ci--){ var wd=parseWD(WEEK_DATES[ci]); if(wd&&wd<=today){ currentWeekIdx=ci; break; } }
           if(currentWeekIdx===-1) currentWeekIdx=WEEK_DATES.length-1;
 
           var tableWrap=document.createElement('div'); tableWrap.style.cssText='overflow-x:auto;border-top:1px solid var(--bdr);';
@@ -2086,7 +2103,7 @@ function buildPersonMilestoneView(name, items) {
   function dateToWkIdx(d){ if(!d) return -1; for(var i=0;i<WEEK_DATES.length;i++){ var wd=parseWD(WEEK_DATES[i]); if(wd&&d<=wd) return i; } return WEEK_DATES.length-1; }
 
   var currentWeekIdx=-1;
-  for(var ci=0;ci<WEEK_DATES.length;ci++){ var wd=parseWD(WEEK_DATES[ci]); if(wd&&today<=wd){ currentWeekIdx=ci; break; } }
+  for(var ci=WEEK_DATES.length-1;ci>=0;ci--){ var wd=parseWD(WEEK_DATES[ci]); if(wd&&wd<=today){ currentWeekIdx=ci; break; } }
   if(currentWeekIdx===-1) currentWeekIdx=WEEK_DATES.length-1;
 
   // Only show current week and future
