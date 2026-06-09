@@ -1441,7 +1441,7 @@ function buildMilestonesTab(container,type,rock) {
     var tdTarget=document.createElement('td');
     tdTarget.style.cssText='font-size:11px;color:var(--tx2);text-align:center;vertical-align:top;';
     if(sub.recurring){
-      tdTarget.innerHTML='<span style="font-size:9px;font-weight:500;color:#5B21B6;background:#EDE9FE;padding:2px 6px;border-radius:4px;text-transform:uppercase;letter-spacing:.04em;">recurring</span>';
+      tdTarget.innerHTML='';
     } else {
       var targetInpMs=document.createElement('input'); targetInpMs.type='date'; targetInpMs.className='ctrl';
       targetInpMs.style.cssText='font-size:11px;width:100%;';
@@ -1449,12 +1449,12 @@ function buildMilestonesTab(container,type,rock) {
       targetInpMs.addEventListener('change',function(){ sub.targetDate=this.value; save(); reRenderTab(rock.id); });
       tdTarget.appendChild(targetInpMs);
     }
-    tr.appendChild(tdTarget);
+    if(!sub.recurring) tr.appendChild(tdTarget);
 
     if(sub.recurring){
       // Recurring task — span all week columns with a single bar
       var tdRec=document.createElement('td');
-      tdRec.colSpan=WEEK_DATES.length;
+      tdRec.colSpan=WEEK_DATES.filter(function(_,wi){return isVisible(wi);}).length + 1;
       tdRec.style.cssText='padding:6px 8px;vertical-align:middle;';
       tdRec.innerHTML='<div style="background:#EDE9FE;border:1.5px solid #C4B5FD;border-radius:6px;padding:5px 12px;font-size:11px;font-weight:500;color:#5B21B6;text-align:center;letter-spacing:.02em;">↻ Recurring Task</div>';
       tr.appendChild(tdRec);
@@ -2250,11 +2250,12 @@ function buildPersonMilestoneView(name, items) {
   // Header
   var thead=document.createElement('thead');
   var hr=document.createElement('tr');
-  [['Rock','min-width:140px;position:sticky;left:0;background:var(--surf2);border-right:2px solid var(--bdr2);'],
-   ['Sub-Rock','min-width:160px;'],
+  [['Rock','width:110px;min-width:90px;position:sticky;left:0;background:var(--surf2);border-right:2px solid var(--bdr2);'],
+   ['Sub-Rock','min-width:140px;'],
+   ['Comments','min-width:150px;'],
    ['Target','width:86px;text-align:center'],
-   ['Conclusion','width:86px;text-align:center'],
-   ['Status','width:100px']
+   ['Status','width:100px'],
+   ['Conclusion','width:86px;text-align:center']
   ].forEach(function(p){
     var th=document.createElement('th'); th.style.cssText=p[1]; th.textContent=p[0]; hr.appendChild(th);
   });
@@ -2308,7 +2309,7 @@ function buildPersonMilestoneView(name, items) {
       if(isFirstOfRock){
         var tdRock=document.createElement('td');
         tdRock.rowSpan=rowCount;
-        tdRock.style.cssText='position:sticky;left:0;background:var(--surf2);border-right:2px solid var(--bdr2);font-size:11px;font-weight:600;color:var(--tx);word-break:break-word;line-height:1.4;vertical-align:top;padding:8px 10px;'+(rIdx>0?'border-top:2px solid var(--bdr2);':'');
+        tdRock.style.cssText='position:sticky;left:0;background:var(--surf2);border-right:2px solid var(--bdr2);font-size:11px;font-weight:600;color:var(--tx);word-break:break-word;line-height:1.4;vertical-align:top;padding:8px 8px;width:110px;min-width:90px;'+(rIdx>0?'border-top:2px solid var(--bdr2);':'');
         tdRock.textContent=rock.title;
         tr.appendChild(tdRock);
       }
@@ -2324,11 +2325,27 @@ function buildPersonMilestoneView(name, items) {
 
       function borderTopStyle(){ return rIdx>0&&isFirstOfRock?'border-top:2px solid var(--bdr2);':''; }
 
+      // Comments cell — shared with Week-by-Week Progress tab
+      var tdCommentI=document.createElement('td');
+      tdCommentI.style.cssText='vertical-align:top;min-width:150px;'+borderTopStyle();
+      var commentElI=document.createElement('div');
+      commentElI.contentEditable='true';
+      commentElI.style.cssText='font-size:12px;color:var(--tx);min-height:32px;padding:3px 6px;border:1px solid var(--bdr);border-radius:5px;line-height:1.5;outline:none;background:var(--surf);word-break:break-word;';
+      commentElI.innerHTML=sub.comment||'';
+      commentElI.setAttribute('data-placeholder','Add comment…');
+      commentElI.addEventListener('focus',function(){ if(!sub.comment) this.style.color='var(--tx)'; });
+      commentElI.addEventListener('blur',function(){
+        sub.comment=this.innerHTML;
+        if(!sub.comment||sub.comment==='<br>') sub.comment='';
+        save();
+      });
+      tdCommentI.appendChild(commentElI); tr.appendChild(tdCommentI);
+
       if(sub.recurring){
-        // Single spanning cell replacing Target + Conclusion + Status + all week cols + delete
+        // Span: Target + Conclusion + Status + weeks + delete = 3 + visWkCount + 1
         var visWkCount = WEEK_DATES.filter(function(_,wi){return isVisibleWk(wi);}).length;
         var tdSpan=document.createElement('td');
-        tdSpan.colSpan = 3 + visWkCount; // Target + Conclusion + Status + weeks
+        tdSpan.colSpan = 3 + visWkCount + 1;
         tdSpan.style.cssText='padding:6px 10px;vertical-align:middle;'+borderTopStyle();
         tdSpan.innerHTML='<div style="background:#E0DCFC;border:1px solid #C4B5FD;border-radius:4px;padding:5px 14px;font-size:11px;font-weight:600;color:#332E88;text-align:center;letter-spacing:.02em;">↻ Recurring Task</div>';
         tr.appendChild(tdSpan);
@@ -2349,12 +2366,6 @@ function buildPersonMilestoneView(name, items) {
         targetInp.addEventListener('change',function(){ sub.targetDate=this.value; save(); renderDashInd(); renderAllRocks(); });
         tdTarget.appendChild(targetInp); tr.appendChild(tdTarget);
 
-        // Conclusion date
-        var tdDone=document.createElement('td'); tdDone.style.cssText='text-align:center;vertical-align:middle;'+borderTopStyle();
-        var doneInp=document.createElement('input'); doneInp.type='date'; doneInp.className='ctrl'; doneInp.style.cssText='font-size:11px;width:100%;min-width:80px;'; doneInp.value=sub.doneDate||'';
-        doneInp.addEventListener('change',function(){ sub.doneDate=this.value; if(this.value) sub.status='Done'; save(); renderDashInd(); renderAllRocks(); });
-        tdDone.appendChild(doneInp); tr.appendChild(tdDone);
-
         // Status
         var tdStatus=document.createElement('td'); tdStatus.style.cssText='vertical-align:middle;'+borderTopStyle();
         var stSel=document.createElement('select'); stSel.className='ctrl'; stSel.style.cssText='font-size:11px;width:100%;';
@@ -2362,6 +2373,12 @@ function buildPersonMilestoneView(name, items) {
         STATUSES.forEach(function(s){ var o=document.createElement('option'); o.textContent=s; if(sub.targetDate&&sub.status===s) o.selected=true; stSel.appendChild(o); });
         stSel.addEventListener('change',function(){ sub.status=this.value==='Unplanned'?'Not Started':this.value; save(); renderDashInd(); renderAllRocks(); });
         tdStatus.appendChild(stSel); tr.appendChild(tdStatus);
+
+        // Conclusion date
+        var tdDone=document.createElement('td'); tdDone.style.cssText='text-align:center;vertical-align:middle;'+borderTopStyle();
+        var doneInp=document.createElement('input'); doneInp.type='date'; doneInp.className='ctrl'; doneInp.style.cssText='font-size:11px;width:100%;min-width:80px;'; doneInp.value=sub.doneDate||'';
+        doneInp.addEventListener('change',function(){ sub.doneDate=this.value; if(this.value) sub.status='Done'; save(); renderDashInd(); renderAllRocks(); });
+        tdDone.appendChild(doneInp); tr.appendChild(tdDone);
 
         // Week dots
         WEEK_DATES.forEach(function(w,wi){
