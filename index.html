@@ -6,22 +6,22 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Quarterly Rocks Workbook · Bloomwells</title>
+<title>Quarterly Rocks Workbook · Cedar Brands</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#E8E5DE;--surf:#FFFFFF;--surf2:#F2F0EC;--surf3:#E4E1DA;
-  --bdr:#D0CCC4;--bdr2:#A8A49C;
-  --tx:#141210;--tx2:#4A4840;--tx3:#888480;
-  --blue:#1558A0;--blue-bg:#DDEAF8;--blue-tx:#0C3D75;
+  --bg:#E9E9EA;--surf:#FFFFFF;--surf2:#F2F2F3;--surf3:#E6E6E7;
+  --bdr:#D2D2D4;--bdr2:#A8A8AB;
+  --tx:#1A1A1C;--tx2:#4D4D50;--tx3:#86868A;
+  --blue:#1558A0;--blue-bg:#E3EDF7;--blue-tx:#0C3D75;
   --green:#2D5E0A;--green-bg:#D6EDBC;
   --amber:#7A4508;--amber-bg:#F8E2BA;
   --red:#992020;--red-bg:#F8DADA;--red-tx:#992020;
   --purple:#4A42AA;--purple-bg:#E4E2FC;--purple-tx:#332E88;
   --teal:#0A6050;--teal-bg:#C8EDE2;--teal-tx:#064840;
-  --sb-bg:#1C1F26;--sb-tx:#C8CAD0;--sb-tx2:#8A8D96;--sb-active-bg:#2A3040;--sb-active-tx:#7BAEE8;--sb-border:#2E323C;
+  --sb-bg:#1C1F26;--sb-tx:#D6D6D8;--sb-tx2:#9A9A9D;--sb-active-bg:#2A2E38;--sb-active-tx:#5B9BD5;--sb-border:#2A2E38;
   --r:8px;--rlg:12px;
   --font:'DM Sans',system-ui,sans-serif;--mono:'DM Mono',monospace;
 }
@@ -34,9 +34,9 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:var(--fon
 .auth-sub{font-size:12px;color:#888;margin-bottom:28px;}
 .auth-label{font-size:11px;font-weight:600;color:#4A4840;text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;display:block;}
 .auth-input{width:100%;padding:9px 12px;border:1px solid #D0CCC4;border-radius:8px;font-size:14px;font-family:var(--font);color:#141210;background:#fff;outline:none;margin-bottom:14px;}
-.auth-input:focus{border-color:#1558A0;box-shadow:0 0 0 3px rgba(21,88,160,0.1);}
-.auth-btn{width:100%;padding:10px;background:#1558A0;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:500;font-family:var(--font);cursor:pointer;margin-top:4px;}
-.auth-btn:hover{background:#0C3D75;}
+.auth-input:focus{border-color:#FF7C53;box-shadow:0 0 0 3px rgba(255,124,83,0.1);}
+.auth-btn{width:100%;padding:10px;background:#FF7C53;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:500;font-family:var(--font);cursor:pointer;margin-top:4px;}
+.auth-btn:hover{background:#C44F2C;}
 .auth-btn:disabled{opacity:0.6;cursor:not-allowed;}
 .auth-err{font-size:12px;color:#992020;background:#F8DADA;border-radius:6px;padding:8px 10px;margin-top:12px;display:none;}
 .sb-user{font-size:11px;color:var(--sb-tx2);padding:6px 14px 2px;word-break:break-all;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
@@ -74,20 +74,20 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:var(--fon
 .stat-val{font-size:20px;font-weight:300;color:#1C1F26;line-height:1.1}
 .stat-val.g{color:var(--green)}.stat-val.a{color:var(--amber)}.stat-val.r{color:var(--red)}.stat-val.b{color:var(--blue)}
 .pill{display:inline-flex;align-items:center;justify-content:center;font-size:11px;padding:0 9px;height:22px;width:100px;border-radius:4px;font-weight:600;white-space:nowrap;text-transform:uppercase;letter-spacing:.04em;box-sizing:border-box;}
-.p-ns{background:#E0DDD6;color:#4A4840}.p-up{background:#F0C8C8;color:#7A1818;}.p-ot{background:#B8DCA0;color:#1E4A08}.p-ar{background:#F5D8A0;color:#6A3806}.p-dn{background:#B8D4F0;color:#0C3D75}.p-dim{background:var(--purple-bg);color:var(--purple-tx);font-size:10px}.p-lead{background:var(--purple-bg);color:var(--purple-tx)}.p-lag{background:var(--teal-bg);color:var(--teal-tx)}.p-rec{background:#D8D4F8;color:#332E88}
+.p-ns{background:#E0DDD6;color:#4A4840}.p-up{background:#F0C8C8;color:#7A1818;}.p-ot{background:#B8DCA0;color:#1E4A08}.p-ar{background:#F5D8A0;color:#6A3806}.p-dn{background:#B8D4F0;color:#C44F2C}.p-dim{background:var(--purple-bg);color:var(--purple-tx);font-size:10px}.p-lead{background:var(--purple-bg);color:var(--purple-tx)}.p-lag{background:var(--teal-bg);color:var(--teal-tx)}.p-rec{background:#D8D4F8;color:#332E88}
 .score-chip{font-family:var(--mono);font-size:11px;padding:2px 7px;border-radius:4px;background:var(--surf2);color:var(--tx2);border:1px solid var(--bdr);width:54px;text-align:center;display:inline-block;box-sizing:border-box;}
 .rock-card{background:var(--surf);border:1px solid var(--bdr);border-radius:var(--rlg);margin-bottom:10px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,0.08)}
 .drag-handle{cursor:grab;color:var(--tx3);padding:0 4px;flex-shrink:0;opacity:0.35;user-select:none;font-size:15px;line-height:1;}
 .drag-handle:hover{opacity:1;color:var(--blue);}
 .sr-row.dragging{opacity:0.35;background:var(--blue-bg);}
-.sr-row.drag-row-above{border-top:2px solid #1558A0;}
-.sr-row.drag-row-below{border-bottom:2px solid #1558A0;}
-.rock-card.drag-over .rock-hdr{outline:2px dashed #1558A0;outline-offset:-2px;background:var(--blue-bg)!important;}
-.drop-zone-active{outline:2px dashed #1558A0;outline-offset:2px;border-radius:6px;}
+.sr-row.drag-row-above{border-top:2px solid #FF7C53;}
+.sr-row.drag-row-below{border-bottom:2px solid #FF7C53;}
+.rock-card.drag-over .rock-hdr{outline:2px dashed #FF7C53;outline-offset:-2px;background:var(--blue-bg)!important;}
+.drop-zone-active{outline:2px dashed #FF7C53;outline-offset:2px;border-radius:6px;}
 .rock-hdr{display:flex;align-items:center;gap:8px;padding:12px 14px;cursor:pointer;border-left:4px solid var(--bdr2)}
 .rock-hdr:hover{background:var(--surf2)}
 /* Per-rock accent colors */
-.rock-card:nth-child(6n+1) .rock-hdr{border-left-color:#1558A0;background:linear-gradient(90deg,#DDEAF820 0%,transparent 60%)}
+.rock-card:nth-child(6n+1) .rock-hdr{border-left-color:#FF7C53;background:linear-gradient(90deg,#DDEAF820 0%,transparent 60%)}
 .rock-card:nth-child(6n+2) .rock-hdr{border-left-color:#2D5E0A;background:linear-gradient(90deg,#D6EDBC20 0%,transparent 60%)}
 .rock-card:nth-child(6n+3) .rock-hdr{border-left-color:#7A4508;background:linear-gradient(90deg,#F8E2BA20 0%,transparent 60%)}
 .rock-card:nth-child(6n+4) .rock-hdr{border-left-color:#4A42AA;background:linear-gradient(90deg,#E4E2FC20 0%,transparent 60%)}
@@ -207,15 +207,15 @@ textarea.fc{resize:vertical;min-height:54px}
 <div id="auth-screen">
   <!-- Sign in form -->
   <div class="auth-card" id="auth-card-signin">
-    <div class="auth-logo">Bloomwells</div>
+    <div class="auth-logo">Cedar Brands</div>
     <div class="auth-sub">Quarterly Rocks Workbook — sign in to continue</div>
     <label class="auth-label" for="auth-email">Email</label>
-    <input class="auth-input" id="auth-email" type="email" placeholder="you@bloomwells.com" autocomplete="email"/>
+    <input class="auth-input" id="auth-email" type="email" placeholder="you@cedarbrands.com" autocomplete="email"/>
     <label class="auth-label" for="auth-pass">Password</label>
     <input class="auth-input" id="auth-pass" type="password" placeholder="••••••••" autocomplete="current-password"/>
     <button class="auth-btn" id="auth-submit">Sign in</button>
     <div style="text-align:center;margin-top:14px">
-      <button onclick="showForgotPassword()" style="background:none;border:none;color:#1558A0;font-size:12px;cursor:pointer;font-family:var(--font);text-decoration:underline;">Forgot password?</button>
+      <button onclick="showForgotPassword()" style="background:none;border:none;color:#FF7C53;font-size:12px;cursor:pointer;font-family:var(--font);text-decoration:underline;">Forgot password?</button>
     </div>
     <div class="auth-err" id="auth-err"></div>
   </div>
@@ -225,10 +225,10 @@ textarea.fc{resize:vertical;min-height:54px}
     <div class="auth-logo">Reset password</div>
     <div class="auth-sub">Enter your email and we'll send you a reset link</div>
     <label class="auth-label" for="auth-reset-email">Email</label>
-    <input class="auth-input" id="auth-reset-email" type="email" placeholder="you@bloomwells.com" autocomplete="email"/>
+    <input class="auth-input" id="auth-reset-email" type="email" placeholder="you@cedarbrands.com" autocomplete="email"/>
     <button class="auth-btn" id="auth-reset-submit">Send reset link</button>
     <div style="text-align:center;margin-top:14px">
-      <button onclick="showSignIn()" style="background:none;border:none;color:#1558A0;font-size:12px;cursor:pointer;font-family:var(--font);text-decoration:underline;">Back to sign in</button>
+      <button onclick="showSignIn()" style="background:none;border:none;color:#FF7C53;font-size:12px;cursor:pointer;font-family:var(--font);text-decoration:underline;">Back to sign in</button>
     </div>
     <div class="auth-err" id="auth-reset-err"></div>
     <div id="auth-reset-ok" style="display:none;font-size:12px;color:#2D5E0A;background:#D6EDBC;border-radius:6px;padding:8px 10px;margin-top:12px;text-align:center;">Reset link sent — check your email</div>
@@ -252,7 +252,9 @@ textarea.fc{resize:vertical;min-height:54px}
 <div class="sidebar">
   <div class="sb-top">
     <div class="sb-top-text">
-      <div class="sb-logo-text">Bloomwells</div>
+      <div style="margin-bottom:6px;padding:4px 0;">
+        <div class="sb-logo-text">Cedar Brands</div>
+      </div>
       <div class="sb-q" id="sb-quarter">Q3 2026</div>
     </div>
     <button class="sidebar-close" onclick="toggleSidebar()" aria-label="Close menu">
@@ -461,7 +463,7 @@ var PAGE_META = {
   ck:         {title:'Country Kitchens Rocks',    sub:'Country Kitchens quarterly rocks'},
   nuzzie:     {title:'Nuzzie Rocks',              sub:'Nuzzie quarterly rocks'},
   jabaloo:    {title:'Jabaloo Rocks',             sub:'Jabaloo quarterly rocks'},
-  cedar:      {title:'Bloomwells Rocks',        sub:'Bloomwells corporate quarterly rocks'},
+  cedar:      {title:'Cedar Brands Rocks',      sub:'Cedar Brands corporate quarterly rocks'},
   'dash-ind': {title:'Individual Dashboard',      sub:'All rocks assigned to each person'},
   'dash-portco':{title:'Department Dashboard',    sub:'All rocks tagged to each department'},
   better:     {title:'1% Better',                 sub:'Small improvements compound to 37x by year end'},
@@ -481,16 +483,16 @@ var D = {
   expanded:{}, srTab:{}, indCollapsed:{}, indRockCollapsed:{}, activeFilter:{}, portcoCollapsed:{}, portcoRockCollapsed:{}
 };
 
-var STORE = 'bw_rocks_v1';
+var STORE = 'cb_rocks_v1';
 var DATA_VERSION = 4;
 var SB_URL = 'https://kpivufhixcwxsqryadjk.supabase.co';
 var SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtwaXZ1ZmhpeGN3eHNxcnlhZGprIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk0OTYwODYsImV4cCI6MjA5NTA3MjA4Nn0.YuRw6ESpkr-7yyww7XOhlkVR7EDCLP52GdPJX7OyIg4';
 var SB_TABLE = 'rocks_cedarbrands_workbook';
-var SB_ID = 'bloomwells';
+var SB_ID = 'cedarbrands';
 var _saveTimer = null;
 
 // ── Auth ───────────────────────────────────────────────────────────────────
-var AUTH_STORE = 'bw_auth_session';
+var AUTH_STORE = 'cb_auth_session';
 var _authSession = null;
 
 function authGetSession() {
@@ -953,7 +955,7 @@ function renderStats(elId, rocks) {
     var isActive=af===c.filter;
     var div=document.createElement('div');
     div.className='stat-card';
-    div.style.cssText='cursor:pointer;transition:box-shadow .15s,background .15s;'+(isActive?'box-shadow:0 0 0 2px '+c.color+';background:rgba(24,95,165,0.06);':'');
+    div.style.cssText='cursor:pointer;transition:box-shadow .15s,background .15s;'+(isActive?'box-shadow:0 0 0 2px '+c.color+';background:rgba(255,124,83,0.06);':'');
     div.innerHTML='<div class="stat-lbl">'+c.label+'</div><div class="stat-val" style="color:'+c.color+'">'+c.val+'</div>'+(isActive?'<div style="font-size:9px;color:'+c.color+';margin-top:2px;text-transform:uppercase;letter-spacing:.05em;font-weight:500">Active</div>':'');
     div.addEventListener('click',function(){ toggleFilter(tabKey,c.filter); });
     el.appendChild(div);
@@ -1026,7 +1028,7 @@ function renderNS() {
 
     var t = document.createElement('th');
     t.style.cssText = 'width:44px;text-align:center;font-size:10px;'
-      + (isCurr ? 'background:rgba(24,95,165,0.07);border-top:2px solid var(--blue);' : '')
+      + (isCurr ? 'background:rgba(255,124,83,0.07);border-top:2px solid var(--blue);' : '')
       + (isPast ? 'opacity:0.6;' : '');
 
     if(isCurr) {
@@ -1090,7 +1092,7 @@ function renderNS() {
       if(isPast   && !isPrev && NS_COLLAPSE_PAST)   return;
       if(isFuture && !isNext && NS_COLLAPSE_FUTURE) return;
       var td=document.createElement('td');
-      td.style.cssText=(isCurr?'background:rgba(24,95,165,0.07);':'')+(isPast?'opacity:0.6;':'');
+      td.style.cssText=(isCurr?'background:rgba(255,124,83,0.07);':'')+(isPast?'opacity:0.6;':'');
       var inp=document.createElement('input'); inp.type='number'; inp.className='ns-wk';
       inp.style.cssText='-moz-appearance:textfield;';
       inp.value=w||'';
@@ -1253,6 +1255,7 @@ function buildRockCard(type,rock,ri) {
     renderStats(type+'-stats', getRocks(type));
     renderAllRocks();
   });
+  scoreInp.style.display='none';
   rightDiv.appendChild(scoreInp);
 
   var statusDiv=document.createElement('div'); statusDiv.className='rock-right-status';
@@ -1536,7 +1539,7 @@ function buildSubrocksTab(container,type,rock,ri) {
   addRow.appendChild(grid); addRow.appendChild(addBtn);
   container.appendChild(addRow);
 
-  var note=document.createElement('div'); note.className='grade-note'; note.textContent='Q Score on the rock card is set by leadership at quarter end. Setting a Conclusion Date auto-marks the sub-rock as Done. Tick "Recurring" for standing tasks with no deadline.';
+  var note=document.createElement('div'); note.className='grade-note'; note.textContent='Setting a Conclusion Date auto-marks the sub-rock as Done. Tick "Recurring" for standing tasks with no deadline.';
   container.appendChild(note);
 }
 
@@ -1616,7 +1619,7 @@ function buildMilestonesTab(container,type,rock) {
     var isPast   = wi<currentWeekIdx;
     var th=document.createElement('th');
     th.style.cssText='width:56px;text-align:center;font-size:10px;position:relative;'
-      +(isCurr?'background:rgba(24,95,165,0.07);border-top:2px solid var(--blue);':'')
+      +(isCurr?'background:rgba(255,124,83,0.07);border-top:2px solid var(--blue);':'')
       +(isPast?'opacity:0.6;':'');
     if(isCurr){
       th.innerHTML='<span style="display:block;font-weight:600;color:var(--blue)">'+w+'</span><span style="display:block;font-size:9px;color:var(--blue);opacity:.7">now</span>';
@@ -1713,7 +1716,7 @@ function buildMilestonesTab(container,type,rock) {
         var td=document.createElement('td');
         var isCurrWeek = wi===currentWeekIdx;
         var isPastDot  = wi<currentWeekIdx;
-        td.style.cssText='text-align:center;padding:6px 4px;vertical-align:middle;'+(isCurrWeek?'background:rgba(24,95,165,0.07);':'')+(isPastDot&&!isCurrWeek?'opacity:0.6;':'');
+        td.style.cssText='text-align:center;padding:6px 4px;vertical-align:middle;'+(isCurrWeek?'background:rgba(255,124,83,0.07);':'')+(isPastDot&&!isCurrWeek?'opacity:0.6;':'');
 
         var dot=document.createElement('button');
         dot.style.cssText='width:18px;height:18px;border-radius:50%;border:none;cursor:pointer;display:inline-block;transition:transform .1s;outline:none;';
@@ -1877,12 +1880,12 @@ function buildKPIsTab(container, type, rock) {
 
       var t=document.createElement('th');
       t.style.cssText='width:44px;text-align:center;font-size:10px;'
-        +(isCurr?'background:rgba(24,95,165,0.07);border-top:2px solid #1558A0;':'')
+        +(isCurr?'background:rgba(255,124,83,0.07);border-top:2px solid #FF7C53;':'')
         +(isPast&&!isCurr?'opacity:0.55;':'');
 
       if(isCurr){
-        t.innerHTML='<span style="font-weight:600;color:#1558A0">'+w+'</span>'
-          +'<span style="display:block;font-size:9px;color:#1558A0;opacity:.7">now</span>';
+        t.innerHTML='<span style="font-weight:600;color:#FF7C53">'+w+'</span>'
+          +'<span style="display:block;font-size:9px;color:#FF7C53;opacity:.7">now</span>';
       } else if(isPrev){
         var arrow=rock._kpiCollapsePast?'◀':'◁';
         t.innerHTML='<button onclick="(function(){var r=rockById(\''+rock.id+'\');if(r){r._kpiCollapsePast=!r._kpiCollapsePast;if(!r._kpiCollapsePast)r._kpiCollapseFuture=true;save();reRenderTab(r.id);}})()" title="'+(rock._kpiCollapsePast?'Expand past':'Collapse past')+'" style="display:block;margin:0 auto 2px;background:none;border:none;cursor:pointer;color:var(--tx3);font-size:11px;line-height:1;padding:0">'+arrow+'</button><span>'+w+'</span>';
@@ -1956,7 +1959,7 @@ function buildKPIsTab(container, type, rock) {
         if(!isVisible(wi)) return;
         var isCurr=wi===currentWeekIdx; var isPast=wi<currentWeekIdx;
         var td=document.createElement('td');
-        td.style.cssText=(isCurr?'background:rgba(21,88,160,0.07);':'')+(isPast&&!isCurr?'opacity:0.55;':'');
+        td.style.cssText=(isCurr?'background:rgba(255,124,83,0.07);':'')+(isPast&&!isCurr?'opacity:0.55;':'');
         var inp=document.createElement('input'); inp.type='number'; inp.className='ns-wk';
         inp.style.cssText='-moz-appearance:textfield;';
         inp.value=v||'';
@@ -2507,7 +2510,7 @@ function buildPersonMilestoneView(name, items) {
 
   // Person header - dark blue
   var hdr=document.createElement('div');
-  hdr.style.cssText='display:flex;align-items:center;gap:8px;padding:10px 14px;background:#1558A0;cursor:pointer;user-select:none;';
+  hdr.style.cssText='display:flex;align-items:center;gap:8px;padding:10px 14px;background:#FF7C53;cursor:pointer;user-select:none;';
   hdr.addEventListener('click',function(){
     if(!D.indCollapsed) D.indCollapsed={};
     D.indCollapsed[name]=!D.indCollapsed[name];
@@ -2572,16 +2575,16 @@ function buildPersonMilestoneView(name, items) {
     var isPast=wi<currentWeekIdx;
     var th=document.createElement('th');
     th.style.cssText='width:48px;text-align:center;font-size:10px;'
-      +(isCurr?'background:rgba(21,88,160,0.08);border-top:2px solid #1558A0;':'')
+      +(isCurr?'background:rgba(255,124,83,0.08);border-top:2px solid #FF7C53;':'')
       +(isPast?'opacity:0.6;':'');
     if(isCurr){
-      th.innerHTML='<span style="font-weight:700;color:#1558A0">'+w+'</span><span style="display:block;font-size:9px;color:#1558A0;opacity:.7">now</span>';
+      th.innerHTML='<span style="font-weight:700;color:#FF7C53">'+w+'</span><span style="display:block;font-size:9px;color:#FF7C53;opacity:.7">now</span>';
     } else if(isPrev && hasPastToHide){
       var arr=collapsePast?'◀':'◁';
-      th.innerHTML='<button onclick="(function(){if(!D.indCollapsed)D.indCollapsed={};D.indCollapsed[\'ind_cp_'+name+'\']=!D.indCollapsed[\'ind_cp_'+name+'\'];if(!D.indCollapsed[\'ind_cp_'+name+'\'])D.indCollapsed[\'ind_cf_'+name+'\']=true;save();renderDashInd();})()" style="display:block;margin:0 auto 1px;background:none;border:none;cursor:pointer;color:#1558A0;font-size:12px;line-height:1;padding:0" title="'+(collapsePast?'Show past':'Hide past')+'">'+arr+'</button><span>'+w+'</span>';
+      th.innerHTML='<button onclick="(function(){if(!D.indCollapsed)D.indCollapsed={};D.indCollapsed[\'ind_cp_'+name+'\']=!D.indCollapsed[\'ind_cp_'+name+'\'];if(!D.indCollapsed[\'ind_cp_'+name+'\'])D.indCollapsed[\'ind_cf_'+name+'\']=true;save();renderDashInd();})()" style="display:block;margin:0 auto 1px;background:none;border:none;cursor:pointer;color:#FF7C53;font-size:12px;line-height:1;padding:0" title="'+(collapsePast?'Show past':'Hide past')+'">'+arr+'</button><span>'+w+'</span>';
     } else if(isNext && hasFutureToHide){
       var arr2=collapseFuture?'▶':'▷';
-      th.innerHTML='<button onclick="(function(){if(!D.indCollapsed)D.indCollapsed={};D.indCollapsed[\'ind_cf_'+name+'\']=!D.indCollapsed[\'ind_cf_'+name+'\'];if(!D.indCollapsed[\'ind_cf_'+name+'\'])D.indCollapsed[\'ind_cp_'+name+'\']=true;save();renderDashInd();})()" style="display:block;margin:0 auto 1px;background:none;border:none;cursor:pointer;color:#1558A0;font-size:12px;line-height:1;padding:0" title="'+(collapseFuture?'Show future':'Hide future')+'">'+arr2+'</button><span>'+w+'</span>';
+      th.innerHTML='<button onclick="(function(){if(!D.indCollapsed)D.indCollapsed={};D.indCollapsed[\'ind_cf_'+name+'\']=!D.indCollapsed[\'ind_cf_'+name+'\'];if(!D.indCollapsed[\'ind_cf_'+name+'\'])D.indCollapsed[\'ind_cp_'+name+'\']=true;save();renderDashInd();})()" style="display:block;margin:0 auto 1px;background:none;border:none;cursor:pointer;color:#FF7C53;font-size:12px;line-height:1;padding:0" title="'+(collapseFuture?'Show future':'Hide future')+'">'+arr2+'</button><span>'+w+'</span>';
     } else {
       th.textContent=w;
     }
@@ -2690,7 +2693,7 @@ function buildPersonMilestoneView(name, items) {
           if(!isVisibleWk(wi)) return;
           var td=document.createElement('td'); var isCurr=wi===currentWeekIdx;
           var isPastCol=wi<currentWeekIdx;
-          td.style.cssText='text-align:center;padding:6px 3px;'+(isCurr?'background:rgba(21,88,160,0.06);':'')+(isPastCol?'opacity:0.6;':'')+(rIdx>0&&isFirstOfRock?'border-top:2px solid var(--bdr2);':'');
+          td.style.cssText='text-align:center;padding:6px 3px;'+(isCurr?'background:rgba(255,124,83,0.06);':'')+(isPastCol?'opacity:0.6;':'')+(rIdx>0&&isFirstOfRock?'border-top:2px solid var(--bdr2);':'');
           var isTarget=wi===targetIdx; var isDone=wi===doneIdx; var isPast=doneIdx>=0&&wi<doneIdx;
           var dot=document.createElement('button');
           dot.style.cssText='width:16px;height:16px;border-radius:50%;border:none;cursor:pointer;display:inline-block;transition:transform .1s;outline:none;';
