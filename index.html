@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Quarterly Rocks Workbook · Cedar Brands</title>
+<title>Quarterly Rocks Workbook · Bloomwells</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -77,6 +80,8 @@ html,body{height:100%;background:var(--bg);color:var(--tx);font-family:var(--fon
 .drag-handle{cursor:grab;color:var(--tx3);padding:0 4px;flex-shrink:0;opacity:0.35;user-select:none;font-size:15px;line-height:1;}
 .drag-handle:hover{opacity:1;color:var(--blue);}
 .sr-row.dragging{opacity:0.35;background:var(--blue-bg);}
+.sr-row.drag-row-above{border-top:2px solid #1558A0;}
+.sr-row.drag-row-below{border-bottom:2px solid #1558A0;}
 .rock-card.drag-over .rock-hdr{outline:2px dashed #1558A0;outline-offset:-2px;background:var(--blue-bg)!important;}
 .drop-zone-active{outline:2px dashed #1558A0;outline-offset:2px;border-radius:6px;}
 .rock-hdr{display:flex;align-items:center;gap:8px;padding:12px 14px;cursor:pointer;border-left:4px solid var(--bdr2)}
@@ -202,10 +207,10 @@ textarea.fc{resize:vertical;min-height:54px}
 <div id="auth-screen">
   <!-- Sign in form -->
   <div class="auth-card" id="auth-card-signin">
-    <div class="auth-logo">Cedar Brands</div>
+    <div class="auth-logo">Bloomwells</div>
     <div class="auth-sub">Quarterly Rocks Workbook — sign in to continue</div>
     <label class="auth-label" for="auth-email">Email</label>
-    <input class="auth-input" id="auth-email" type="email" placeholder="you@cedarbrands.com" autocomplete="email"/>
+    <input class="auth-input" id="auth-email" type="email" placeholder="you@bloomwells.com" autocomplete="email"/>
     <label class="auth-label" for="auth-pass">Password</label>
     <input class="auth-input" id="auth-pass" type="password" placeholder="••••••••" autocomplete="current-password"/>
     <button class="auth-btn" id="auth-submit">Sign in</button>
@@ -220,7 +225,7 @@ textarea.fc{resize:vertical;min-height:54px}
     <div class="auth-logo">Reset password</div>
     <div class="auth-sub">Enter your email and we'll send you a reset link</div>
     <label class="auth-label" for="auth-reset-email">Email</label>
-    <input class="auth-input" id="auth-reset-email" type="email" placeholder="you@cedarbrands.com" autocomplete="email"/>
+    <input class="auth-input" id="auth-reset-email" type="email" placeholder="you@bloomwells.com" autocomplete="email"/>
     <button class="auth-btn" id="auth-reset-submit">Send reset link</button>
     <div style="text-align:center;margin-top:14px">
       <button onclick="showSignIn()" style="background:none;border:none;color:#1558A0;font-size:12px;cursor:pointer;font-family:var(--font);text-decoration:underline;">Back to sign in</button>
@@ -247,7 +252,7 @@ textarea.fc{resize:vertical;min-height:54px}
 <div class="sidebar">
   <div class="sb-top">
     <div class="sb-top-text">
-      <div class="sb-logo-text">Cedar Brands</div>
+      <div class="sb-logo-text">Bloomwells</div>
       <div class="sb-q" id="sb-quarter">Q3 2026</div>
     </div>
     <button class="sidebar-close" onclick="toggleSidebar()" aria-label="Close menu">
@@ -289,7 +294,7 @@ textarea.fc{resize:vertical;min-height:54px}
       </button>
       <div style="min-width:0">
         <div class="pg-title" id="pg-title">All Rocks</div>
-        <div class="pg-sub" id="pg-sub">Every rock across all brands & corporate</div>
+        <div class="pg-sub" id="pg-sub">Every rock across the company</div>
       </div>
     </div>
     <div style="display:flex;align-items:center;gap:12px;flex-shrink:0"><span id="sync-status" style="font-size:11px;transition:color .3s"></span><div id="topbar-act" style="display:flex;gap:8px">
@@ -452,11 +457,11 @@ var MS_OPTS = ['--','Planned','Done','At Risk'];
 var WEEK_DATES = ['03.16','03.23','03.30','04.06','04.13','04.20','04.27','05.04','05.11','05.18','05.25','06.01','06.08','06.15','06.22','06.29','07.06','07.13','07.20','07.27','08.03','08.10','08.17','08.24','08.31','09.07','09.14','09.21','09.28'];
 var PAGE_META = {
   northstar:  {title:'North Star Metrics',        sub:'Leading and lagging indicators — tracked weekly'},
-  allrocks:   {title:'All Rocks',                 sub:'Every rock across all brands & corporate'},
+  allrocks:   {title:'All Rocks',                 sub:'Every rock across the company'},
   ck:         {title:'Country Kitchens Rocks',    sub:'Country Kitchens quarterly rocks'},
   nuzzie:     {title:'Nuzzie Rocks',              sub:'Nuzzie quarterly rocks'},
   jabaloo:    {title:'Jabaloo Rocks',             sub:'Jabaloo quarterly rocks'},
-  cedar:      {title:'Cedar Brands Rocks',        sub:'Cedar Brands corporate quarterly rocks'},
+  cedar:      {title:'Bloomwells Rocks',        sub:'Bloomwells corporate quarterly rocks'},
   'dash-ind': {title:'Individual Dashboard',      sub:'All rocks assigned to each person'},
   'dash-portco':{title:'Department Dashboard',    sub:'All rocks tagged to each department'},
   better:     {title:'1% Better',                 sub:'Small improvements compound to 37x by year end'},
@@ -476,16 +481,16 @@ var D = {
   expanded:{}, srTab:{}, indCollapsed:{}, indRockCollapsed:{}, activeFilter:{}, portcoCollapsed:{}, portcoRockCollapsed:{}
 };
 
-var STORE = 'cb_rocks_v1';
+var STORE = 'bw_rocks_v1';
 var DATA_VERSION = 4;
 var SB_URL = 'https://kpivufhixcwxsqryadjk.supabase.co';
 var SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtwaXZ1ZmhpeGN3eHNxcnlhZGprIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk0OTYwODYsImV4cCI6MjA5NTA3MjA4Nn0.YuRw6ESpkr-7yyww7XOhlkVR7EDCLP52GdPJX7OyIg4';
-var SB_TABLE = 'rocks_cedarbrands_workbook';
-var SB_ID = 'cedar_brands';
+var SB_TABLE = 'rocks_bloomwells_workbook';
+var SB_ID = 'bloomwells';
 var _saveTimer = null;
 
 // ── Auth ───────────────────────────────────────────────────────────────────
-var AUTH_STORE = 'cb_auth_session';
+var AUTH_STORE = 'bw_auth_session';
 var _authSession = null;
 
 function authGetSession() {
@@ -757,6 +762,10 @@ function save() {
 }
 
 function saveToSupabase() {
+  if (!_authSession) {
+    console.warn('saveToSupabase: no auth session, skipping');
+    return;
+  }
   D._v = DATA_VERSION;
   var payload = { id: SB_ID, data: D, updated_at: new Date().toISOString() };
   fetch(SB_URL + '/rest/v1/' + SB_TABLE, {
@@ -764,8 +773,14 @@ function saveToSupabase() {
     headers: sbHeaders(),
     body: JSON.stringify(payload)
   }).then(function(r) {
-    if (!r.ok) r.text().then(function(t){ console.warn('Supabase save error:', t); });
-    else setSyncStatus('saved');
+    if (!r.ok) {
+      r.text().then(function(t){
+        console.warn('Supabase save error status:', r.status, 'body:', t);
+        setSyncStatus('error');
+      });
+    } else {
+      setSyncStatus('saved');
+    }
   }).catch(function(e) { console.warn('Supabase save failed:', e); setSyncStatus('error'); });
 }
 
@@ -805,13 +820,16 @@ function load() {
   fetch(SB_URL + '/rest/v1/' + SB_TABLE + '?id=eq.' + SB_ID + '&select=data', {
     headers: {
       'apikey': SB_KEY,
-      'Authorization': 'Bearer ' + SB_KEY
+      'Authorization': 'Bearer ' + authToken()
     }
   }).then(function(r) { return r.json(); })
   .then(function(rows) {
+    console.log('Supabase load response:', JSON.stringify(rows).substring(0, 200));
     if (rows && rows.length > 0 && rows[0].data) {
       applyData(rows[0].data);
       try { D._v=DATA_VERSION; localStorage.setItem(STORE, JSON.stringify(D)); } catch(e) {}
+    } else {
+      console.warn('Supabase returned no rows — RLS may be blocking read. Token used:', authToken() ? 'session token' : 'anon key');
     }
     setSyncStatus('');
     bootApp(); // seeds run inside bootApp after data is applied
@@ -1350,6 +1368,7 @@ function buildSubrocksTab(container,type,rock,ri) {
     handle.addEventListener('mousedown', function(e){ e.stopPropagation(); });
 
     row.draggable = true;
+    row.setAttribute('data-sub-id', sub.id);
     row.addEventListener('dragstart', function(e){
       _drag = { subId: sub.id, fromRockId: rock.id };
       row.classList.add('dragging');
@@ -1360,7 +1379,57 @@ function buildSubrocksTab(container,type,rock,ri) {
       _drag = null;
       row.classList.remove('dragging');
       document.querySelectorAll('.drag-over').forEach(function(el){ el.classList.remove('drag-over'); });
-      document.querySelectorAll('.drop-zone-active').forEach(function(el){ el.classList.remove('drop-zone-active'); });
+      document.querySelectorAll('.drag-row-above').forEach(function(el){ el.classList.remove('drag-row-above'); });
+      document.querySelectorAll('.drag-row-below').forEach(function(el){ el.classList.remove('drag-row-below'); });
+    });
+    row.addEventListener('dragover', function(e){
+      if(!_drag) return;
+      e.preventDefault(); e.stopPropagation();
+      e.dataTransfer.dropEffect = 'move';
+      // Clear other indicators
+      document.querySelectorAll('.drag-row-above,.drag-row-below').forEach(function(el){ el.classList.remove('drag-row-above','drag-row-below'); });
+      // Determine above or below based on cursor position
+      var rect = row.getBoundingClientRect();
+      var mid  = rect.top + rect.height / 2;
+      if(e.clientY < mid) { row.classList.add('drag-row-above'); }
+      else                { row.classList.add('drag-row-below'); }
+    });
+    row.addEventListener('dragleave', function(){
+      row.classList.remove('drag-row-above','drag-row-below');
+    });
+    row.addEventListener('drop', function(e){
+      e.preventDefault(); e.stopPropagation();
+      if(!_drag) return;
+      var isAbove = row.classList.contains('drag-row-above');
+      row.classList.remove('drag-row-above','drag-row-below');
+      var targetSubId = sub.id;
+      var fromRockId  = _drag.fromRockId;
+      var dragSubId   = _drag.subId;
+      if(dragSubId === targetSubId) return;
+
+      if(fromRockId === rock.id) {
+        // Reorder within same rock
+        var arr = rock.subrocks;
+        var fromIdx = arr.findIndex(function(s){ return s.id===dragSubId; });
+        var toIdx   = arr.findIndex(function(s){ return s.id===targetSubId; });
+        if(fromIdx===-1||toIdx===-1) return;
+        var moved = arr.splice(fromIdx, 1)[0];
+        toIdx = arr.findIndex(function(s){ return s.id===targetSubId; });
+        if(isAbove) arr.splice(toIdx, 0, moved);
+        else        arr.splice(toIdx+1, 0, moved);
+      } else {
+        // Move from another rock, insert at position
+        var fromRock = rockById(fromRockId);
+        if(!fromRock) return;
+        var dragSub = fromRock.subrocks.find(function(s){ return s.id===dragSubId; });
+        if(!dragSub) return;
+        fromRock.subrocks = fromRock.subrocks.filter(function(s){ return s.id!==dragSubId; });
+        var toIdx2 = rock.subrocks.findIndex(function(s){ return s.id===targetSubId; });
+        if(isAbove) rock.subrocks.splice(toIdx2, 0, dragSub);
+        else        rock.subrocks.splice(toIdx2+1, 0, dragSub);
+        D.expanded[rock.id] = true;
+      }
+      save(); reRender();
     });
 
     var info=document.createElement('div'); info.style.minWidth='0';
